@@ -1,0 +1,445 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">DashApp</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor01"
+          aria-controls="navbarColor01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                >Add Dash
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Earnings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Statistics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reports</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Dropdown</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-3">Stats</div>
+        <div class="col-9"></div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <ul class="list-group">
+            <li
+              class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center"
+            >
+              Total Earned
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center"
+            >
+              Total Mileage
+              <span class="badge bg-primary rounded-pill">2</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-success d-flex justify-content-between align-items-center"
+            >
+              Highest Earning Day
+              <span class="badge bg-primary rounded-pill">1</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+            >
+              Highest Mileage
+              <span class="badge bg-primary rounded-pill">5</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center"
+            >
+              Hourly Rate
+              <span class="badge bg-primary rounded-pill">4</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center"
+            >
+              Highest Dash
+              <span class="badge bg-primary rounded-pill">9</span>
+            </li>
+          </ul>
+
+          <div>Weekdays</div>
+          <ul class="list-group">
+            <li
+              class="list-group-item list-group-item-light d-flex justify-content-between align-items-center"
+            >
+              Monday
+              <span class="badge bg-primary rounded-pill">8</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Tuesday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Wednesday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Thursday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Friday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Saturday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+            <li
+              class="list-group-item list-group-item-dark d-flex justify-content-between align-items-center"
+            >
+              Sunday
+              <span class="badge bg-primary rounded-pill">0</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-3">
+              <div class="form-group">
+                <select class="form-select">
+                  <option>Jan</option>
+                  <option>Feb</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-group">
+                <select class="form-select">
+                  <option>2023</option>
+                  <option>2024</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <table class="table table-hover">
+              <!--!-->
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Start Time</th>
+                  <th scope="col">End Time</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Mileage(miles)</th>
+                  <th scope="col">Hourly Rate</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-primary">
+                  <td>443</td>
+                  <!--!-->
+                  <td>8/29/2023</td>
+                  <!--!-->
+                  <td>4:50 PM</td>
+                  <!--!-->
+                  <td>5:30 PM</td>
+                  <!--!-->
+                  <td>$19.00</td>
+                  <!--!-->
+                  <td>27</td>
+                  <!--!-->
+                  <td>$28.50</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/443" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr class="table-primary">
+                  <td>442</td>
+                  <!--!-->
+                  <td>8/27/2023</td>
+                  <!--!-->
+                  <td>4:39 PM</td>
+                  <!--!-->
+                  <td>7:25 PM</td>
+                  <!--!-->
+                  <td>$64.07</td>
+                  <!--!-->
+                  <td>69</td>
+                  <!--!-->
+                  <td>$23.16</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/442" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr class="table-primary">
+                  <td>441</td>
+                  <!--!-->
+                  <td>8/27/2023</td>
+                  <!--!-->
+                  <td>9:20 AM</td>
+                  <!--!-->
+                  <td>12:14 PM</td>
+                  <!--!-->
+                  <td>$51.00</td>
+                  <!--!-->
+                  <td>63</td>
+                  <!--!-->
+                  <td>$17.59</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/441" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr class="table-primary">
+                  <td>440</td>
+                  <!--!-->
+                  <td>8/25/2023</td>
+                  <!--!-->
+                  <td>4:07 PM</td>
+                  <!--!-->
+                  <td>8:54 PM</td>
+                  <!--!-->
+                  <td>$96.50</td>
+                  <!--!-->
+                  <td>91</td>
+                  <!--!-->
+                  <td>$20.17</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/440" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr class="table-primary">
+                  <td>439</td>
+                  <!--!-->
+                  <td>8/24/2023</td>
+                  <!--!-->
+                  <td>5:34 PM</td>
+                  <!--!-->
+                  <td>8:04 PM</td>
+                  <!--!-->
+                  <td>$53.80</td>
+                  <!--!-->
+                  <td>61</td>
+                  <!--!-->
+                  <td>$21.52</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/439" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>438</td>
+                  <!--!-->
+                  <td>8/23/2023</td>
+                  <!--!-->
+                  <td>6:05 PM</td>
+                  <!--!-->
+                  <td>7:58 PM</td>
+                  <!--!-->
+                  <td>$47.75</td>
+                  <!--!-->
+                  <td>52</td>
+                  <!--!-->
+                  <td>$25.35</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/438" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>437</td>
+                  <!--!-->
+                  <td>8/20/2023</td>
+                  <!--!-->
+                  <td>4:53 PM</td>
+                  <!--!-->
+                  <td>6:02 PM</td>
+                  <!--!-->
+                  <td>$25.22</td>
+                  <!--!-->
+                  <td>17</td>
+                  <!--!-->
+                  <td>$21.93</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/437" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>436</td>
+                  <!--!-->
+                  <td>8/19/2023</td>
+                  <!--!-->
+                  <td>5:27 PM</td>
+                  <!--!-->
+                  <td>6:41 PM</td>
+                  <!--!-->
+                  <td>$19.05</td>
+                  <!--!-->
+                  <td>29</td>
+                  <!--!-->
+                  <td>$15.45</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/436" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>435</td>
+                  <!--!-->
+                  <td>8/19/2023</td>
+                  <!--!-->
+                  <td>4:22 PM</td>
+                  <!--!-->
+                  <td>4:42 PM</td>
+                  <!--!-->
+                  <td>$6.75</td>
+                  <!--!-->
+                  <td>7</td>
+                  <!--!-->
+                  <td>$20.25</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/435" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>434</td>
+                  <!--!-->
+                  <td>8/19/2023</td>
+                  <!--!-->
+                  <td>3:48 PM</td>
+                  <!--!-->
+                  <td>4:22 PM</td>
+                  <!--!-->
+                  <td>$10.25</td>
+                  <!--!-->
+                  <td>14</td>
+                  <!--!-->
+                  <td>$18.09</td>
+                  <!--!-->
+                  <td>
+                    <!--!--><a href="/UpdateDash/434" class="nav-link"
+                      ><!--!--><span
+                        class="oi oi-plus"
+                        aria-hidden="true"
+                      ></span>
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
