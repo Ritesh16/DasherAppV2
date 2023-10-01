@@ -1,0 +1,14 @@
+{
+  "name": "dasherappv2",
+  "version": "1.0.0",
+  "description": "This is a dasher app and its designed in Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ritesh Sharma",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}
