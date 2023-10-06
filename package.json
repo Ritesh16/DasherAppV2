@@ -4,7 +4,7 @@
   "description": "This is a dasher app and its designed in Javascript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html"
   },
   "author": "Ritesh Sharma",
   "license": "ISC",
