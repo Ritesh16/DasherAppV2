@@ -1,4 +1,4 @@
-import { TIME_OUT } from "./helper";
+import { TIME_OUT } from "./config.js";
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
