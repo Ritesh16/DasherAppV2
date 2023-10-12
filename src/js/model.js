@@ -15,7 +15,6 @@ export const getTotalEarned = async function () {
     `${API_URL}statistics/GetTotalEarned?fromDate=${state.search.fromDate}&toDate=${state.search.toDate}&location=${state.search.location}`
   );
 
-  console.log("model", data);
   state.totalEarned = data;
 };
 
