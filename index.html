@@ -1,6 +1,10 @@
 <html>
   <head>
     <link rel="stylesheet" href="bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/js-datepicker/dist/datepicker.min.css"
+    />
     <script type="module" defer src="src/js/controller.js"></script>
   </head>
   <body>
@@ -151,64 +155,66 @@
           </ul>
         </div>
         <div class="col-9">
-          <div class="row">
-            <div class="col-4" style="text-align: left">
-              <label>From Date</label>
-            </div>
-            <div class="col-4" style="text-align: left">
-              <label>To Date</label>
-            </div>
-            <div class="col-4" style="text-align: left">
-              <label>Location </label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-2">
-              <div class="form-group">
-                <!-- <select class="form-select">
-                  <option>Jan</option>
-                  <option>Feb</option>
-                </select> -->
-                <input data-provide="datepicker" />
+          <div class="filter">
+            <!-- <div class="row">
+              <div class="col-4" style="text-align: left">
+                <label>From Date</label>
+              </div>
+              <div class="col-4" style="text-align: left">
+                <label>To Date</label>
+              </div>
+              <div class="col-4" style="text-align: left">
+                <label>Location </label>
               </div>
             </div>
-            <div class="col-2">
-              <div class="form-group">
-                <select class="form-select">
-                  <option>2022</option>
-                  <option>2023</option>
-                  <option>2024</option>
-                </select>
+            <div class="row">
+              <div class="col-2">
+                <div class="form-group">
+                   <select class="form-select">
+                    <option>Jan</option>
+                    <option>Feb</option>
+                  </select> 
+                  <input data-provide="datepicker" />
+                </div>
               </div>
-            </div>
+              <div class="col-2">
+                <div class="form-group">
+                  <select class="form-select">
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                  </select>
+                </div>
+              </div>
 
-            <div class="col-2">
-              <div class="form-group">
-                <select class="form-select">
-                  <option>Jan</option>
-                  <option>Feb</option>
-                </select>
+              <div class="col-2">
+                <div class="form-group">
+                  <select class="form-select">
+                    <option>Jan</option>
+                    <option>Feb</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="col-2">
-              <div class="form-group">
-                <select class="form-select">
-                  <option>2022</option>
-                  <option>2023</option>
-                  <option>2024</option>
-                </select>
+              <div class="col-2">
+                <div class="form-group">
+                  <select class="form-select">
+                    <option>2022</option>
+                    <option>2023</option>
+                    <option>2024</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="col-2">
-              <div class="form-group">
-                <select class="form-select">
-                  <option>All</option>
-                  <option>Middletown</option>
-                  <option>Newark</option>
-                </select>
+              <div class="col-2">
+                <div class="form-group">
+                  <select class="form-select">
+                    <option>All</option>
+                    <option>Middletown</option>
+                    <option>Newark</option>
+                  </select>
+                </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div id="appArea">
