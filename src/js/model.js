@@ -3,11 +3,12 @@ import { API_URL } from "./config";
 
 export const state = {
   totalEarned: 0,
+  locations: [],
   search: {
     fromDate: "01012023",
-    fromDateString: "",
+    fromDateString: "01012023",
     toDate: "10092023",
-    toDateString: "",
+    toDateString: "10092023",
     location: "all",
   },
 };
@@ -20,19 +21,27 @@ export const getTotalEarned = async function () {
   state.totalEarned = data;
 };
 
+export const getLocations = async function () {
+  const data = await callAPI(`${API_URL}locations`);
+  console.log("locations", data);
+  state.locations = data;
+};
+
 export const init = function () {
   const date = new Date();
-  state.search.fromDate = new Date("10/01/2023");
+  state.search.fromDate = new Date("01/01/2023");
   state.search.toDate = date;
 
+  const month = state.search.fromDate.getMonth() + 1;
+
   state.search.fromDateString = `${
-    state.search.fromDate.getMonth() + 1
+    month > 9 ? month : "0" + month
   }01${state.search.fromDate.getFullYear()}`;
 
   state.search.toDateString = `${
-    state.search.toDate.getMonth() + 1
+    month > 9 ? month : "0" + month
   }${state.search.toDate.getDate()}${state.search.toDate.getFullYear()}`;
 
-  console.log(state.search);
+  getLocations();
 };
 init();

@@ -11,69 +11,56 @@ class DateFilterView extends View {
   _generateMarkup() {
     return `
     <div class="row">
-    <div class="col-4" style="text-align: left">
+    <div class="col-3" style="text-align: left">
       <label>From Date</label>
     </div>
-    <div class="col-4" style="text-align: left">
+    <div class="col-3" style="text-align: left">
       <label>To Date</label>
     </div>
-    <div class="col-4" style="text-align: left">
+    <div class="col-3" style="text-align: left">
       <label>Location </label>
     </div>
   </div>
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       <div class="form-group">
-        <!-- <select class="form-select">
-          <option>Jan</option>
-          <option>Feb</option>
-        </select> -->
-        <input class="fromDate" />
+        <input class="form-control fromDate" value='${this._data.state.search.fromDate.toLocaleDateString()}' />
       </div>
     </div>
-    <div class="col-2">
-      <div class="form-group">
-        <select class="form-select">
-          <option>2022</option>
-          <option>2023</option>
-          <option>2024</option>
-        </select>
-      </div>
+    <div class="col-3">
+    <div class="form-group">
+      <input class="form-control toDate" value='${this._data.state.search.toDate.toLocaleDateString()}' />
     </div>
-
-    <div class="col-2">
-      <div class="form-group">
-        <select class="form-select">
-          <option>Jan</option>
-          <option>Feb</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-2">
-      <div class="form-group">
-        <select class="form-select">
-          <option>2022</option>
-          <option>2023</option>
-          <option>2024</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <div class="form-group">
-        <select class="form-select">
-          <option>All</option>
-          <option>Middletown</option>
-          <option>Newark</option>
-        </select>
-      </div>
-    </div>
+  </div>
+  <div class="col-3">
+  <div class="form-group">
+  <select class="form-control">
+     <option value="all">---All---</option>
+     
+  </select>  
+  <input class="form-control toDate" value='${this._data.state.search.toDate.toLocaleDateString()}' />
+  </div>
+</div>
   </div>
     `;
   }
 
   showCalendar() {
-    const picker = datepicker(".fromDate");
+    datepicker(".fromDate", {
+      formatter: (input, date, instance) => {
+        const value = date.toLocaleDateString();
+        const d = new Date(value);
+        console.log(11, d);
+        input.value = value; // => '1/1/2099'
+      },
+    });
+
+    datepicker(".toDate", {
+      formatter: (input, date, instance) => {
+        const value = date.toLocaleDateString();
+        input.value = value; // => '1/1/2099'
+      },
+    });
   }
 }
 

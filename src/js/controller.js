@@ -2,8 +2,6 @@ import * as model from "./model.js";
 import totalEarnedView from "./views/totalEarnedView";
 import dateFilterView from "./views/dateFilterView";
 
-const dashContainer = document.querySelector("#appArea");
-
 const controlTotalEarned = async function () {
   await model.getTotalEarned();
   totalEarnedView.render(model.state.totalEarned);
@@ -15,6 +13,7 @@ const controlFilter = async function () {
 };
 
 const init = function () {
+  model.getLocations();
   totalEarnedView.addHandlerRender(controlTotalEarned);
   dateFilterView.addHandlerRender(controlFilter);
 };
