@@ -3,6 +3,7 @@ import { API_URL } from "./config";
 
 export const state = {
   totalEarned: 0,
+  totalMileage: 0,
   locations: [],
   search: {
     fromDate: "01012023",
@@ -18,12 +19,19 @@ export const getTotalEarned = async function () {
     `${API_URL}statistics/GetTotalEarned?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
   );
 
-  state.totalEarned = data;
+  state.totalEarned = data.toFixed(2);
+};
+
+export const getTotalMileage = async function () {
+  const data = await callAPI(
+    `${API_URL}statistics/GetTotalMileage?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
+  );
+
+  state.totalMileage = data;
 };
 
 export const getLocations = async function () {
   const data = await callAPI(`${API_URL}locations`);
-  console.log("locations", data);
   state.locations = data;
 };
 
@@ -33,13 +41,14 @@ export const init = function () {
   state.search.toDate = date;
 
   const month = state.search.fromDate.getMonth() + 1;
+  const toMonth = state.search.toDate.getMonth() + 1;
 
   state.search.fromDateString = `${
     month > 9 ? month : "0" + month
   }01${state.search.fromDate.getFullYear()}`;
 
   state.search.toDateString = `${
-    month > 9 ? month : "0" + month
+    toMonth > 9 ? toMonth : "0" + toMonth
   }${state.search.toDate.getDate()}${state.search.toDate.getFullYear()}`;
 
   getLocations();

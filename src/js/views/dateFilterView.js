@@ -36,9 +36,12 @@ class DateFilterView extends View {
   <div class="form-group">
   <select class="form-control">
      <option value="all">---All---</option>
-     
+     ${this._data.state.locations
+       .map(function (key) {
+         return "<option value='" + key + "'>" + key + "</option>";
+       })
+       .join("")}
   </select>  
-  <input class="form-control toDate" value='${this._data.state.search.toDate.toLocaleDateString()}' />
   </div>
 </div>
   </div>
@@ -46,16 +49,12 @@ class DateFilterView extends View {
   }
 
   showCalendar() {
-    datepicker(".fromDate", {
-      formatter: (input, date, instance) => {
-        const value = date.toLocaleDateString();
-        const d = new Date(value);
-        console.log(11, d);
-        input.value = value; // => '1/1/2099'
-      },
-    });
+    this._addCalendar(".fromDate");
+    this._addCalendar(".toDate");
+  }
 
-    datepicker(".toDate", {
+  _addCalendar(selector) {
+    datepicker(selector, {
       formatter: (input, date, instance) => {
         const value = date.toLocaleDateString();
         input.value = value; // => '1/1/2099'
