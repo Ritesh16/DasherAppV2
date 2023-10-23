@@ -1,7 +1,7 @@
 import View from "./view";
 
 class TotalMileageView extends View {
-  _parentElement = document.querySelector(".statistics");
+  _parentElement = document.querySelector("#totalMileage");
 
   addHandlerRender(handler) {
     window.addEventListener("load", handler);
@@ -9,11 +9,8 @@ class TotalMileageView extends View {
 
   _generateMarkup() {
     return `
-    <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center"
-            >
-              Total Mileage
-              <span class="badge bg-primary rounded-pill">${this._data}</span>
-            </li>
+    Total Mileage
+    <span class="badge bg-primary rounded-pill">${this._data}</span>
     `;
   }
 }

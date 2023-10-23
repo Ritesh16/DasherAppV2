@@ -6,7 +6,7 @@ export const state = {
   totalMileage: 0,
   locations: [],
   search: {
-    fromDate: "01012023",
+    fromDate: "10272022",
     fromDateString: "01012023",
     toDate: "10092023",
     toDateString: "10092023",
@@ -37,7 +37,7 @@ export const getLocations = async function () {
 
 export const init = function () {
   const date = new Date();
-  state.search.fromDate = new Date("01/01/2023");
+  state.search.fromDate = new Date("10/27/2022");
   state.search.toDate = date;
 
   const month = state.search.fromDate.getMonth() + 1;
