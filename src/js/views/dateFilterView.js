@@ -38,7 +38,7 @@ class DateFilterView extends View {
      <option value="all">---All---</option>
      ${this._data.state.locations
        .map(function (key) {
-         return "<option value='" + key + "'>" + key + "</option>";
+         return "<option value='" + key.id + "'>" + key.name + "</option>";
        })
        .join("")}
   </select>  

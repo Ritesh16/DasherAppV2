@@ -33,6 +33,7 @@ export const getTotalMileage = async function () {
 export const getLocations = async function () {
   const data = await callAPI(`${API_URL}locations`);
   state.locations = data;
+  console.log(1, data);
 };
 
 export const init = function () {
@@ -51,6 +52,6 @@ export const init = function () {
     toMonth > 9 ? toMonth : "0" + toMonth
   }${state.search.toDate.getDate()}${state.search.toDate.getFullYear()}`;
 
-  getLocations();
+  //getLocations();
 };
 init();
