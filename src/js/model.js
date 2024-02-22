@@ -5,6 +5,7 @@ export const state = {
   totalEarned: 0,
   totalMileage: 0,
   locations: [],
+  dashList: [],
   search: {
     fromDate: "10272022",
     fromDateString: "01012023",
@@ -33,6 +34,11 @@ export const getTotalMileage = async function () {
 export const getLocations = async function () {
   const data = await callAPI(`${API_URL}locations`);
   state.locations = data;
+};
+
+export const getDashList = async function () {
+  const data = await callAPI(`${API_URL}DailyDashes`);
+  state.dashList = data;
   console.log(1, data);
 };
 

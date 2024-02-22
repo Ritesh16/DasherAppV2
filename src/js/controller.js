@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import totalEarnedView from "./views/totalEarnedView";
 import totalMileageView from "./views/totalMileageView";
 import dateFilterView from "./views/dateFilterView";
+import dashListView from "./views/dashListView";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -15,6 +16,7 @@ import dateFilterView from "./views/dateFilterView";
 
 const controlFilter = async function () {
   await model.getLocations();
+  await model.getDashList();
   dateFilterView.render(model);
   dateFilterView.showCalendar();
 };
@@ -23,6 +25,7 @@ const init = async function () {
   // totalEarnedView.addHandlerRender(controlTotalEarned);
   // totalMileageView.addHandlerRender(controlTotalMileage);
   dateFilterView.addHandlerRender(controlFilter);
+  dashListView.addHandlerRender(controlFilter);
 };
 
 init();

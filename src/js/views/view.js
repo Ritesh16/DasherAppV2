@@ -3,7 +3,6 @@ export default class View {
 
   render(data, render = true) {
     this._data = data;
-    console.log(data);
     const markup = this._generateMarkup();
 
     console.log(markup);
