@@ -19,6 +19,7 @@ const controlFilter = async function () {
   await model.getDashList();
   dateFilterView.render(model);
   dateFilterView.showCalendar();
+  dashListView.render(model);
 };
 
 const init = async function () {

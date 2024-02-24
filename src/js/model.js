@@ -39,7 +39,7 @@ export const getLocations = async function () {
 export const getDashList = async function () {
   const data = await callAPI(`${API_URL}DailyDashes`);
   state.dashList = data;
-  console.log(1, data);
+  console.log(data);
 };
 
 export const init = function () {
@@ -57,7 +57,5 @@ export const init = function () {
   state.search.toDateString = `${
     toMonth > 9 ? toMonth : "0" + toMonth
   }${state.search.toDate.getDate()}${state.search.toDate.getFullYear()}`;
-
-  //getLocations();
 };
 init();

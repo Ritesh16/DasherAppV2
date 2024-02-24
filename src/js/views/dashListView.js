@@ -25,19 +25,17 @@ class DashListView extends View {
     </thead>
     <tbody>
     ${this._data.state.dashList
-      .map(function () {
-        return (
-          "<tr class=table-primary> " +
-          "<td>1</td>" +
-          "<td>8/29/2023</td>" +
-          "<td>4:50 PM</td>" +
-          "<td>5:30 PM</td>" +
-          "<td>$19.00</td>" +
-          "<td>27</td>" +
-          "<td>$28.50</td>" +
-          "<td>Edit</td>" +
-          "</tr>"
-        );
+      .map(function (dash) {
+        return `<tr class=table-primary> 
+          <td>${dash.id}</td>
+          <td>${dash.date}</td>
+          <td>${dash.startTime}</td>
+          <td>${dash.endTime}</td>
+          <td>${dash.amount}</td>
+          <td>${dash.mileage}</td>
+          <td>$28.50</td>
+          <td>Edit</td>
+          </tr>`;
       })
       .join("")}
      
