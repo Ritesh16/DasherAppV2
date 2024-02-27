@@ -24,12 +24,16 @@ class DateFilterView extends View {
   <div class="row">
     <div class="col-3">
       <div class="form-group">
-        <input class="form-control fromDate" value='${this._data.state.search.fromDate.toLocaleDateString()}' />
+        <input class="form-control fromDate" value='${
+          this._data.state.search.fromDate
+        }' />
       </div>
     </div>
     <div class="col-3">
     <div class="form-group">
-      <input class="form-control toDate" value='${this._data.state.search.toDate.toLocaleDateString()}' />
+      <input class="form-control toDate" value='${
+        this._data.state.search.toDate
+      }' />
     </div>
   </div>
   <div class="col-3">

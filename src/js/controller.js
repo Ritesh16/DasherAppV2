@@ -15,6 +15,7 @@ import dashListView from "./views/dashListView";
 // };
 
 const controlFilter = async function () {
+  await model.setDates();
   await model.getLocations();
   await model.getDashList();
   dateFilterView.render(model);

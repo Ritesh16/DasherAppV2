@@ -8,9 +8,7 @@ export const state = {
   dashList: [],
   search: {
     fromDate: "10272022",
-    fromDateString: "01012023",
     toDate: "10092023",
-    toDateString: "10092023",
     location: "all",
   },
 };
@@ -37,25 +35,29 @@ export const getLocations = async function () {
 };
 
 export const getDashList = async function () {
-  const data = await callAPI(`${API_URL}DailyDashes`);
+  const data = await callAPI(
+    `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
+  );
   state.dashList = data;
   console.log(data);
 };
 
-export const init = function () {
-  const date = new Date();
-  state.search.fromDate = new Date("10/27/2022");
-  state.search.toDate = date;
+export const setDates = async function () {
+  let myPromise = new Promise(function (resolve) {
+    const date = new Date();
+    state.search.fromDate = "10-27-2022";
 
-  const month = state.search.fromDate.getMonth() + 1;
-  const toMonth = state.search.toDate.getMonth() + 1;
+    // Get year, month, and day part from the date
+    var year = date.toLocaleString("default", { year: "numeric" });
+    var month = date.toLocaleString("default", { month: "2-digit" });
+    var day = date.toLocaleString("default", { day: "2-digit" });
 
-  state.search.fromDateString = `${
-    month > 9 ? month : "0" + month
-  }01${state.search.fromDate.getFullYear()}`;
+    // Generate yyyy-mm-dd date string
+    var formattedDate = month + "-" + day + "-" + year;
 
-  state.search.toDateString = `${
-    toMonth > 9 ? toMonth : "0" + toMonth
-  }${state.search.toDate.getDate()}${state.search.toDate.getFullYear()}`;
+    state.search.toDate = formattedDate;
+    resolve();
+  });
+
+  return await myPromise;
 };
-init();

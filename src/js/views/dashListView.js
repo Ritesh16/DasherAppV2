@@ -28,10 +28,13 @@ class DashListView extends View {
       .map(function (dash) {
         return `<tr class=table-primary> 
           <td>${dash.id}</td>
-          <td>${dash.date}</td>
-          <td>${dash.startTime}</td>
-          <td>${dash.endTime}</td>
-          <td>${dash.amount}</td>
+          <td>${new Date(dash.date).toLocaleDateString()}</td>
+          <td>${new Date(dash.startTime).toLocaleTimeString()}</td>
+          <td>${new Date(dash.endTime).toLocaleTimeString()}</td>
+          <td>${dash.amount.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}</td>
           <td>${dash.mileage}</td>
           <td>$28.50</td>
           <td>Edit</td>
