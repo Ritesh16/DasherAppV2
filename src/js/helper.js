@@ -29,3 +29,25 @@ export const callAPI = async function (url, uploadData = undefined) {
     throw error;
   }
 };
+
+export const callAPIWithHeaders = async function (url, uploadData = undefined) {
+  try {
+    const fetchPromise = uploadData
+      ? fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(uploadData),
+        })
+      : fetch(url);
+
+    const result = await Promise.race([fetchPromise, timeout(TIME_OUT)]);
+
+    if (!result.ok)
+      throw new Error("Some error has occurred while consuming API");
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

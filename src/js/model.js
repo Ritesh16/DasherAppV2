@@ -1,4 +1,4 @@
-import { callAPI } from "./helper";
+import { callAPI, callAPIWithHeaders } from "./helper";
 import { API_URL } from "./config";
 
 export const state = {
@@ -35,11 +35,13 @@ export const getLocations = async function () {
 };
 
 export const getDashList = async function () {
-  const data = await callAPI(
+  const response = await callAPIWithHeaders(
     `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
   );
+
+  console.log(2, response.headers.get("Pagination"));
+  let data = await response.json();
   state.dashList = data;
-  console.log(data);
 };
 
 export const setDates = async function () {

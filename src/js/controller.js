@@ -3,6 +3,7 @@ import totalEarnedView from "./views/totalEarnedView";
 import totalMileageView from "./views/totalMileageView";
 import dateFilterView from "./views/dateFilterView";
 import dashListView from "./views/dashListView";
+import paginationView from "./views/paginationView";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -21,6 +22,7 @@ const controlFilter = async function () {
   dateFilterView.render(model);
   dateFilterView.showCalendar();
   dashListView.render(model);
+  paginationView.render(model);
 };
 
 const init = async function () {
@@ -28,6 +30,7 @@ const init = async function () {
   // totalMileageView.addHandlerRender(controlTotalMileage);
   dateFilterView.addHandlerRender(controlFilter);
   dashListView.addHandlerRender(controlFilter);
+  paginationView.addHandlerRender(controlFilter);
 };
 
 init();
