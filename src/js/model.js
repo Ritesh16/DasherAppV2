@@ -11,6 +11,7 @@ export const state = {
     toDate: "10092023",
     location: "all",
   },
+  headers: {},
 };
 
 export const getTotalEarned = async function () {
@@ -30,18 +31,19 @@ export const getTotalMileage = async function () {
 };
 
 export const getLocations = async function () {
-  const data = await callAPI(`${API_URL}locations`);
+  const response = await callAPI(`${API_URL}locations`);
+  const data = await response.json();
   state.locations = data;
 };
 
 export const getDashList = async function () {
-  const response = await callAPIWithHeaders(
+  const response = await callAPI(
     `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
   );
 
-  console.log(2, response.headers.get("Pagination"));
-  let data = await response.json();
+  const data = await response.json();
   state.dashList = data;
+  state.headers = response.headers.get("Pagination");
 };
 
 export const setDates = async function () {

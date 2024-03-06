@@ -8,32 +8,31 @@ class PaginationView extends View {
   }
 
   _generateMarkup() {
+    const currentPage = this._data.state.headers.currentPage;
+    const lastPage = this._data.state.headers.totalPages;
+
     return `
     <div>
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">&laquo;</a>
-    </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">4</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">5</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">&raquo;</a>
-    </li>
-  </ul>
-</div>
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <a class="page-link" href="#">&laquo;</a>
+          </li>
+    ${Array(lastPage)
+      .fill(1)
+      .map((_, i) => {
+        return `    
+          <li class="page-item active">
+            <a class="page-link" href="#">${i}</a>
+          </li>          
+      `;
+      })
+      .join("")}
+
+      <li class="page-item">
+            <a class="page-link" href="#">&raquo;</a>
+          </li>
+        </ul>
+      </div>
     `;
   }
 }
