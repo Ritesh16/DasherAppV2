@@ -15,22 +15,44 @@ import paginationView from "./views/paginationView";
 //   totalMileageView.render(model.state.totalMileage);
 // };
 
-const controlFilter = async function () {
-  await model.setDates();
-  await model.getLocations();
-  await model.getDashList();
+const controlFilter = function () {
+  //model.setDates();
+
   dateFilterView.render(model);
   dateFilterView.showCalendar();
-  dashListView.render(model);
-  paginationView.render(model);
 };
 
-const init = async function () {
+const controlDashList = function () {
+  console.log("data.....", model);
+  dashListView.render(model);
+};
+
+const controlPagination = function (goTo) {
+  // render pagination
+  console.log("before-->controlPAgination");
+  //paginationView.render(model);
+  console.log(goTo);
+  console.log("after-->controlPAgination");
+};
+
+const init = function () {
+  //await model.getDashList();
+  model.getLocations();
+
+  model.setDates();
+  model.getDashList1();
+  console.log(88, model.state);
+
   // totalEarnedView.addHandlerRender(controlTotalEarned);
   // totalMileageView.addHandlerRender(controlTotalMileage);
   dateFilterView.addHandlerRender(controlFilter);
-  dashListView.addHandlerRender(controlFilter);
-  paginationView.addHandlerRender(controlFilter);
+  dashListView.addHandlerRender(controlDashList);
+
+  console.log("before");
+  console.log(1, model.state.headers);
+  paginationView.render(model);
+  paginationView.addHandlerClick(controlPagination);
+  console.log("after");
 };
 
 init();

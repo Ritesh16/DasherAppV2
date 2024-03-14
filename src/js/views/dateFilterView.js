@@ -5,6 +5,7 @@ class DateFilterView extends View {
   _parentElement = document.querySelector(".filter");
 
   addHandlerRender(handler) {
+    console.log(33);
     window.addEventListener("load", handler);
   }
 

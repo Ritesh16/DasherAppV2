@@ -46,6 +46,26 @@ export const getDashList = async function () {
   state.headers = response.headers.get("Pagination");
 };
 
+export const getDashList1 = function () {
+  const d1 = fetch(
+    `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
+  )
+    .then((response) => {
+      // Check if the request was successful
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      // Parse the response as JSON
+
+      console.log(3, response.headers.get("Pagination"));
+      return response.json();
+    })
+    .then((d) => console.log(2, d));
+
+  console.log(111, d1);
+  state.dashList = d1;
+};
+
 export const setDates = async function () {
   let myPromise = new Promise(function (resolve) {
     const date = new Date();
