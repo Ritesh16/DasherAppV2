@@ -5,11 +5,11 @@ class DateFilterView extends View {
   _parentElement = document.querySelector(".filter");
 
   addHandlerRender(handler) {
-    console.log(33);
     window.addEventListener("load", handler);
   }
 
   _generateMarkup() {
+    console.log("dateFilter", this._data);
     return `
     <div class="row">
     <div class="col-3" style="text-align: left">

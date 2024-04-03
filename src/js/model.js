@@ -47,7 +47,7 @@ export const getDashList = async function () {
 };
 
 export const getDashList1 = function () {
-  const d1 = fetch(
+  fetch(
     `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
   )
     .then((response) => {
@@ -57,31 +57,23 @@ export const getDashList1 = function () {
       }
       // Parse the response as JSON
 
-      console.log(3, response.headers.get("Pagination"));
+      this.state.headers = JSON.parse(response.headers.get("Pagination"));
       return response.json();
     })
-    .then((d) => console.log(2, d));
-
-  console.log(111, d1);
-  state.dashList = d1;
+    .then((d) => (this.state.dashList = d));
 };
 
-export const setDates = async function () {
-  let myPromise = new Promise(function (resolve) {
-    const date = new Date();
-    state.search.fromDate = "10-27-2022";
+export const setDates = function () {
+  const date = new Date();
+  state.search.fromDate = "10-27-2022";
 
-    // Get year, month, and day part from the date
-    var year = date.toLocaleString("default", { year: "numeric" });
-    var month = date.toLocaleString("default", { month: "2-digit" });
-    var day = date.toLocaleString("default", { day: "2-digit" });
+  // Get year, month, and day part from the date
+  var year = date.toLocaleString("default", { year: "numeric" });
+  var month = date.toLocaleString("default", { month: "2-digit" });
+  var day = date.toLocaleString("default", { day: "2-digit" });
 
-    // Generate yyyy-mm-dd date string
-    var formattedDate = month + "-" + day + "-" + year;
+  // Generate yyyy-mm-dd date string
+  var formattedDate = month + "-" + day + "-" + year;
 
-    state.search.toDate = formattedDate;
-    resolve();
-  });
-
-  return await myPromise;
+  state.search.toDate = formattedDate;
 };

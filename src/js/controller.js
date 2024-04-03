@@ -15,15 +15,19 @@ import paginationView from "./views/paginationView";
 //   totalMileageView.render(model.state.totalMileage);
 // };
 
-const controlFilter = function () {
+const controlFilter = async function () {
   //model.setDates();
+  console.log("get locations");
+  await model.getLocations();
 
   dateFilterView.render(model);
   dateFilterView.showCalendar();
 };
 
-const controlDashList = function () {
+const controlDashList = async function () {
   console.log("data.....", model);
+  await model.getDashList();
+
   dashListView.render(model);
 };
 
@@ -36,22 +40,14 @@ const controlPagination = function (goTo) {
 };
 
 const init = function () {
-  //await model.getDashList();
-  model.getLocations();
-
   model.setDates();
-  model.getDashList1();
-  console.log(88, model.state);
-
-  // totalEarnedView.addHandlerRender(controlTotalEarned);
-  // totalMileageView.addHandlerRender(controlTotalMileage);
   dateFilterView.addHandlerRender(controlFilter);
   dashListView.addHandlerRender(controlDashList);
 
-  console.log("before");
-  console.log(1, model.state.headers);
-  paginationView.render(model);
-  paginationView.addHandlerClick(controlPagination);
+  //model.getDashList1();
+
+  //paginationView.render(model);
+  //paginationView.addHandlerClick(controlPagination);
   console.log("after");
 };
 
