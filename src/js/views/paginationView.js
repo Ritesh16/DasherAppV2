@@ -19,8 +19,10 @@ class PaginationView extends View {
   }
 
   _generateMarkup() {
+    console.log(2, this._data.state.headers);
+
     const headers = JSON.parse(this._data.state.headers);
-    console.log(this._data);
+    console.log(2, headers);
     const currentPage = headers.currentPage;
     const lastPage = headers.totalPages;
     return `

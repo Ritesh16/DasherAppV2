@@ -16,8 +16,6 @@ import paginationView from "./views/paginationView";
 // };
 
 const controlFilter = async function () {
-  //model.setDates();
-  console.log("get locations");
   await model.getLocations();
 
   dateFilterView.render(model);
@@ -25,10 +23,11 @@ const controlFilter = async function () {
 };
 
 const controlDashList = async function () {
-  console.log("data.....", model);
   await model.getDashList();
-
   dashListView.render(model);
+
+  paginationView.render(model);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 const controlPagination = function (goTo) {
@@ -37,18 +36,14 @@ const controlPagination = function (goTo) {
   //paginationView.render(model);
   console.log(goTo);
   console.log("after-->controlPAgination");
+
+  paginationView.render(model);
 };
 
 const init = function () {
   model.setDates();
   dateFilterView.addHandlerRender(controlFilter);
   dashListView.addHandlerRender(controlDashList);
-
-  //model.getDashList1();
-
-  //paginationView.render(model);
-  //paginationView.addHandlerClick(controlPagination);
-  console.log("after");
 };
 
 init();

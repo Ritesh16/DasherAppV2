@@ -9,7 +9,6 @@ class DateFilterView extends View {
   }
 
   _generateMarkup() {
-    console.log("dateFilter", this._data);
     return `
     <div class="row">
     <div class="col-3" style="text-align: left">
