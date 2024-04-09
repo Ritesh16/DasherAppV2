@@ -34,9 +34,11 @@ const controlPagination = function (goTo) {
   // render pagination
   console.log("before-->controlPAgination");
   //paginationView.render(model);
-  console.log(goTo);
-  console.log("after-->controlPAgination");
+  //model.state.headers.currentPage = goTo;
+  console.log(goTo, model);
 
+  console.log("after-->controlPAgination");
+  document.getElementById("pageList").innerHTML = "";
   paginationView.render(model);
 };
 

@@ -29,8 +29,14 @@ class DashListView extends View {
         return `<tr class=table-primary> 
           <td>${dash.id}</td>
           <td>${new Date(dash.date).toLocaleDateString()}</td>
-          <td>${new Date(dash.startTime).toLocaleTimeString()}</td>
-          <td>${new Date(dash.endTime).toLocaleTimeString()}</td>
+          <td>${new Date(dash.startTime).toLocaleTimeString(
+            navigator.language,
+            { hour: "2-digit", minute: "2-digit" }
+          )}</td>
+          <td>${new Date(dash.endTime).toLocaleTimeString(navigator.language, {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}</td>
           <td>${dash.amount.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",

@@ -6,10 +6,7 @@ class PaginationView extends View {
   addHandlerClick(handler) {
     this._parentElement.addEventListener("click", function (e) {
       e.preventDefault();
-      console.log(3);
       const btn = e.target.closest(".page-link");
-      console.log(2, e.target);
-      console.log(1, btn);
       if (!btn) return;
 
       const goto = +btn.dataset.goto;
@@ -19,10 +16,7 @@ class PaginationView extends View {
   }
 
   _generateMarkup() {
-    console.log(2, this._data.state.headers);
-
     const headers = JSON.parse(this._data.state.headers);
-    console.log(2, headers);
     const currentPage = headers.currentPage;
     const lastPage = headers.totalPages;
     return `
@@ -32,7 +26,7 @@ class PaginationView extends View {
             <a class="page-link" href="#">&laquo;</a>
           </li>
     ${Array(10)
-      .fill(1)
+      .fill(11)
       .map((_, i) => {
         if (currentPage == i + 1) {
           return `    
