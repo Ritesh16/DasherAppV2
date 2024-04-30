@@ -26,20 +26,47 @@ const controlDashList = async function () {
   await model.getDashList();
   dashListView.render(model);
 
+  model.state.headers.firstPage = 1;
   paginationView.render(model);
   paginationView.addHandlerClick(controlPagination);
 };
 
 const controlPagination = function (goTo) {
+  console.log(goTo);
   // render pagination
-  console.log("before-->controlPAgination");
-  //paginationView.render(model);
-  //model.state.headers.currentPage = goTo;
-  console.log(goTo, model);
+  if (goTo == ">>") {
+    let firstPage = +document.querySelector(".pagination li:nth-child(2)")
+      .innerText;
 
-  console.log("after-->controlPAgination");
-  document.getElementById("pageList").innerHTML = "";
-  paginationView.render(model);
+    firstPage = firstPage + 10;
+
+    model.state.headers.currentPage = firstPage;
+    model.state.headers.firstPage = firstPage;
+  } else if (goTo == "<<") {
+    let firstPage = +document.querySelector(".pagination li:nth-child(2)")
+      .innerText;
+
+    model.state.headers.currentPage = firstPage - 10;
+    model.state.headers.firstPage = firstPage - 10;
+
+    console.log("<<", model.state.headers.currentPage);
+
+    if (model.state.headers.currentPage < 0) {
+      model.state.headers.currentPage = 1;
+      model.state.headers.firstPage = 1;
+    }
+  } else {
+    model.state.headers.currentPage = goTo;
+    model.state.headers.firstPage = +document.querySelector(
+      ".pagination li:nth-child(2)"
+    ).innerText;
+  }
+
+  if (model.state.headers.currentPage < model.state.headers.totalPages) {
+    document.getElementById("pageList").innerHTML = "";
+    console.log("before", model.state.headers);
+    paginationView.render(model);
+  }
 };
 
 const init = function () {

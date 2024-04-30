@@ -43,10 +43,8 @@ export const getDashList = async function () {
 
   const data = await response.json();
   state.dashList = data;
-  if (response.headers.get("Pagination")) {
-    const headers = JSON.parse(response.headers.get("Pagination"));
-    state.headers = headers;
-  }
+  const headers = JSON.parse(response.headers.get("Pagination"));
+  state.headers = headers;
 };
 
 export const getDashList1 = function () {
