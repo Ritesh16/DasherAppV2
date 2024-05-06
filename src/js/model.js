@@ -38,7 +38,7 @@ export const getLocations = async function () {
 
 export const getDashList = async function () {
   const response = await callAPI(
-    `${API_URL}DailyDashes?pageNumber=1&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
+    `${API_URL}DailyDashes?pageNumber=${state.headers.currentPage}&pageSize=10&location=all&fromDate=${state.search.fromDate}&toDate=${state.search.toDate}`
   );
 
   const data = await response.json();

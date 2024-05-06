@@ -23,6 +23,7 @@ const controlFilter = async function () {
 };
 
 const controlDashList = async function () {
+  model.state.headers.currentPage = 1;
   await model.getDashList();
   dashListView.render(model);
 
@@ -31,8 +32,7 @@ const controlDashList = async function () {
   paginationView.addHandlerClick(controlPagination);
 };
 
-const controlPagination = function (goTo) {
-  console.log(goTo);
+const controlPagination = async function (goTo) {
   // render pagination
   if (goTo == ">>") {
     let firstPage = +document.querySelector(".pagination li:nth-child(2)")
@@ -63,8 +63,14 @@ const controlPagination = function (goTo) {
   }
 
   if (model.state.headers.currentPage < model.state.headers.totalPages) {
+    let firstPage = model.state.headers.firstPage;
+    document.getElementById("appArea").innerHTML = "";
+    await model.getDashList();
+    dashListView.render(model);
+
+    model.state.headers.firstPage = firstPage;
+
     document.getElementById("pageList").innerHTML = "";
-    console.log("before", model.state.headers);
     paginationView.render(model);
   }
 };
