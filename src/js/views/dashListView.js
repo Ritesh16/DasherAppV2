@@ -42,7 +42,10 @@ class DashListView extends View {
             currency: "USD",
           })}</td>
           <td>${dash.mileage}</td>
-          <td>$28.50</td>
+          <td>${dash.hourlyRate.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+          })}</td>
           <td>Edit</td>
           </tr>`;
       })

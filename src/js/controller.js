@@ -49,8 +49,6 @@ const controlPagination = async function (goTo) {
     model.state.headers.currentPage = firstPage - 10;
     model.state.headers.firstPage = firstPage - 10;
 
-    console.log("<<", model.state.headers.currentPage);
-
     if (model.state.headers.currentPage < 0) {
       model.state.headers.currentPage = 1;
       model.state.headers.firstPage = 1;
@@ -62,7 +60,7 @@ const controlPagination = async function (goTo) {
     ).innerText;
   }
 
-  if (model.state.headers.currentPage < model.state.headers.totalPages) {
+  if (model.state.headers.currentPage <= model.state.headers.totalPages) {
     let firstPage = model.state.headers.firstPage;
     document.getElementById("appArea").innerHTML = "";
     await model.getDashList();
@@ -70,7 +68,6 @@ const controlPagination = async function (goTo) {
 
     model.state.headers.firstPage = firstPage;
 
-    document.getElementById("pageList").innerHTML = "";
     paginationView.render(model);
   }
 };

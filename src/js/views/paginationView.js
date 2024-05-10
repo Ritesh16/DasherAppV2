@@ -37,7 +37,7 @@ class PaginationView extends View {
       .map((_, i) => {
         i = pageNumber;
         pageNumber = pageNumber + 1;
-        if (pageNumber <= lastPage) {
+        if (pageNumber <= lastPage + 1) {
           if (currentPage == i) {
             return `    
             <li class="page-item active">
