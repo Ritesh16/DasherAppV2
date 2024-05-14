@@ -8,46 +8,56 @@ class DateFilterView extends View {
     window.addEventListener("load", handler);
   }
 
+  addHandlerOnChange(handler) {
+    let fromDate = document.querySelector(".searchbtn");
+    fromDate.addEventListener("click", handler);
+  }
+
   _generateMarkup() {
     return `
+      <div class="row">
+      <div class="col-3" style="text-align: left">
+        <label>From Date</label>
+      </div>
+      <div class="col-3" style="text-align: left">
+        <label>To Date</label>
+      </div>
+      <div class="col-3" style="text-align: left">
+        <label>Location </label>
+      </div>
+    </div>
     <div class="row">
-    <div class="col-3" style="text-align: left">
-      <label>From Date</label>
-    </div>
-    <div class="col-3" style="text-align: left">
-      <label>To Date</label>
-    </div>
-    <div class="col-3" style="text-align: left">
-      <label>Location </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-3">
+      <div class="col-3">
+        <div class="form-group">
+          <input class="form-control fromDate" value='${
+            this._data.state.search.fromDate
+          }' />
+        </div>
+      </div>
+      <div class="col-3">
       <div class="form-group">
-        <input class="form-control fromDate" value='${
-          this._data.state.search.fromDate
+        <input class="form-control toDate" value='${
+          this._data.state.search.toDate
         }' />
       </div>
     </div>
     <div class="col-3">
     <div class="form-group">
-      <input class="form-control toDate" value='${
-        this._data.state.search.toDate
-      }' />
+    <select class="form-control location">
+      <option value="all">---All---</option>
+      ${this._data.state.locations
+        .map(function (key) {
+          return "<option value='" + key.id + "'>" + key.name + "</option>";
+        })
+        .join("")}
+    </select>  
     </div>
   </div>
-  <div class="col-3">
-  <div class="form-group">
-  <select class="form-control">
-     <option value="all">---All---</option>
-     ${this._data.state.locations
-       .map(function (key) {
-         return "<option value='" + key.id + "'>" + key.name + "</option>";
-       })
-       .join("")}
-  </select>  
+  <div class="col-1">
+    <div class="form-group">
+        <button class="btn btn-primary searchbtn">Search</button>
+    </div>
   </div>
-</div>
   </div>
     `;
   }

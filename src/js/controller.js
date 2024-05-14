@@ -20,6 +20,25 @@ const controlFilter = async function () {
 
   dateFilterView.render(model);
   dateFilterView.showCalendar();
+  dateFilterView.addHandlerOnChange(fromDateFilter);
+};
+
+const fromDateFilter = async function () {
+  model.state.search.fromDate = document.querySelector(".fromDate").value;
+  model.state.search.toDate = document.querySelector(".toDate").value;
+  let locationElement = document.querySelector(".location");
+  let location =
+    locationElement.options[locationElement.selectedIndex].innerText;
+
+  model.state.search.location = location;
+
+  console.log("filter", model);
+  await model.getDashList();
+  dashListView.render(model);
+
+  model.state.headers.firstPage = 1;
+  paginationView.render(model);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 const controlDashList = async function () {
@@ -34,18 +53,15 @@ const controlDashList = async function () {
 
 const controlPagination = async function (goTo) {
   // render pagination
-  if (goTo == ">>") {
-    let firstPage = +document.querySelector(".pagination li:nth-child(2)")
-      .innerText;
+  let firstPage = +document.querySelector(".pagination li:nth-child(2)")
+    .innerText;
 
+  if (goTo == ">>") {
     firstPage = firstPage + 10;
 
     model.state.headers.currentPage = firstPage;
     model.state.headers.firstPage = firstPage;
   } else if (goTo == "<<") {
-    let firstPage = +document.querySelector(".pagination li:nth-child(2)")
-      .innerText;
-
     model.state.headers.currentPage = firstPage - 10;
     model.state.headers.firstPage = firstPage - 10;
 
