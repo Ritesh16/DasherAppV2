@@ -1,5 +1,6 @@
 import View from "./view";
 import datepicker from "js-datepicker";
+import { formatDate } from "../utility";
 
 class DateFilterView extends View {
   _parentElement = document.querySelector(".filter");
@@ -9,8 +10,7 @@ class DateFilterView extends View {
   }
 
   addHandlerOnChange(handler) {
-    let fromDate = document.querySelector(".searchbtn");
-    fromDate.addEventListener("click", handler);
+    document.querySelector(".searchbtn").addEventListener("click", handler);
   }
 
   _generateMarkup() {
@@ -70,7 +70,7 @@ class DateFilterView extends View {
   _addCalendar(selector) {
     datepicker(selector, {
       formatter: (input, date, instance) => {
-        const value = date.toLocaleDateString();
+        const value = formatDate(date);
         input.value = value; // => '1/1/2099'
       },
     });
