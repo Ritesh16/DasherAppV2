@@ -11,6 +11,14 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  renderSpinner = function () {
+    this._clear();
+    const markup = `
+    <img src="loading.418a60b0.gif" style="height: 50px;" />
+    `;
+    this._parentElement.insertAdjacentHTML("afterbegin", markup);
+  };
+
   _clear() {
     this._parentElement.innerHTML = "";
   }

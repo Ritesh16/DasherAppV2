@@ -24,6 +24,7 @@ const controlFilter = async function () {
 };
 
 const fromDateFilter = async function () {
+  dashListView.renderSpinner();
   model.state.search.fromDate = document.querySelector(".fromDate").value;
   model.state.search.toDate = document.querySelector(".toDate").value;
   let locationElement = document.querySelector(".location");
@@ -42,6 +43,7 @@ const fromDateFilter = async function () {
 };
 
 const controlDashList = async function () {
+  dashListView.renderSpinner();
   model.state.headers.currentPage = 1;
   await model.getDashList();
   dashListView.render(model);
@@ -53,6 +55,7 @@ const controlDashList = async function () {
 
 const controlPagination = async function (goTo) {
   // render pagination
+  dashListView.renderSpinner();
   let firstPage = +document.querySelector(".pagination li:nth-child(2)")
     .innerText;
 

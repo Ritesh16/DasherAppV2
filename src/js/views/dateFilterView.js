@@ -44,7 +44,7 @@ class DateFilterView extends View {
     <div class="col-3">
     <div class="form-group">
     <select class="form-control location">
-      <option value="all">---All---</option>
+      <option value="all">All</option>
       ${this._data.state.locations
         .map(function (key) {
           return "<option value='" + key.id + "'>" + key.name + "</option>";
@@ -63,16 +63,17 @@ class DateFilterView extends View {
   }
 
   showCalendar() {
-    this._addCalendar(".fromDate");
-    this._addCalendar(".toDate");
+    this._addCalendar(".fromDate", new Date(2022, 9, 27));
+    this._addCalendar(".toDate", new Date());
   }
 
-  _addCalendar(selector) {
+  _addCalendar(selector, date) {
     datepicker(selector, {
       formatter: (input, date, instance) => {
         const value = formatDate(date);
         input.value = value; // => '1/1/2099'
       },
+      startDate: date,
     });
   }
 }
