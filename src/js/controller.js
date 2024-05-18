@@ -17,13 +17,12 @@ import paginationView from "./views/paginationView";
 
 const controlFilter = async function () {
   await model.getLocations();
-
   dateFilterView.render(model);
   dateFilterView.showCalendar();
-  dateFilterView.addHandlerOnChange(fromDateFilter);
+  dateFilterView.addHandlerOnSearch(searchFilter);
 };
 
-const fromDateFilter = async function () {
+const searchFilter = async function () {
   dashListView.renderSpinner();
   model.state.search.fromDate = document.querySelector(".fromDate").value;
   model.state.search.toDate = document.querySelector(".toDate").value;
@@ -32,8 +31,6 @@ const fromDateFilter = async function () {
     locationElement.options[locationElement.selectedIndex].innerText;
 
   model.state.search.location = location;
-
-  console.log("filter", model);
   await model.getDashList();
   dashListView.render(model);
 
@@ -55,7 +52,6 @@ const controlDashList = async function () {
 
 const controlPagination = async function (goTo) {
   // render pagination
-  dashListView.renderSpinner();
   let firstPage = +document.querySelector(".pagination li:nth-child(2)")
     .innerText;
 
@@ -80,6 +76,7 @@ const controlPagination = async function (goTo) {
   }
 
   if (model.state.headers.currentPage <= model.state.headers.totalPages) {
+    dashListView.renderSpinner();
     let firstPage = model.state.headers.firstPage;
     document.getElementById("appArea").innerHTML = "";
     await model.getDashList();

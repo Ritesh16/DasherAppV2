@@ -9,7 +9,7 @@ class DateFilterView extends View {
     window.addEventListener("load", handler);
   }
 
-  addHandlerOnChange(handler) {
+  addHandlerOnSearch(handler) {
     document.querySelector(".searchbtn").addEventListener("click", handler);
   }
 
