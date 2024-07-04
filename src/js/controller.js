@@ -4,6 +4,9 @@ import totalMileageView from "./views/totalMileageView";
 import dateFilterView from "./views/dateFilterView";
 import dashListView from "./views/dashListView";
 import paginationView from "./views/paginationView";
+import earningsView from "./views/earningsView";
+import EarningsFilterView from "./views/earningsFilterView";
+import earningsFilterView from "./views/earningsFilterView";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -20,6 +23,13 @@ const controlFilter = async function () {
   dateFilterView.render(model);
   dateFilterView.showCalendar();
   dateFilterView.addHandlerOnSearch(searchFilter);
+};
+
+const loadEarnings = async function () {
+  // call to load earnings
+  earningsView.render();
+  earningsFilterView.render(model);
+  clearDashes();
 };
 
 const searchFilter = async function () {
@@ -88,10 +98,31 @@ const controlPagination = async function (goTo) {
   }
 };
 
-const init = function () {
-  model.setDates();
-  dateFilterView.addHandlerRender(controlFilter);
-  dashListView.addHandlerRender(controlDashList);
+const loadLinks = function () {
+  const earningsLink = document.querySelector("#earnings-link");
+  const dashLink = document.querySelector("#dashapp-link");
+
+  earningsLink.addEventListener("click", loadEarnings);
+  dashLink.addEventListener("click", loadDashesDirectly);
 };
 
+const init = function () {
+  loadDashes();
+};
+
+const loadDashesDirectly = function () {
+  loadDashes(true);
+};
+
+const loadDashes = function (loadDirectly = false) {
+  model.setDates();
+  dateFilterView.addHandlerRender(controlFilter, loadDirectly);
+  dashListView.addHandlerRender(controlDashList, loadDirectly);
+};
+
+const clearDashes = function () {
+  document.getElementById("filter").innerHTML = "";
+  document.getElementById("pageList").innerHTML = "";
+};
 init();
+loadLinks();

@@ -5,8 +5,12 @@ import { formatDate } from "../utility";
 class DateFilterView extends View {
   _parentElement = document.querySelector(".filter");
 
-  addHandlerRender(handler) {
-    window.addEventListener("load", handler);
+  addHandlerRender(handler, callDirectly = false) {
+    if (callDirectly) {
+      handler();
+    } else {
+      window.addEventListener("load", handler);
+    }
   }
 
   addHandlerOnSearch(handler) {

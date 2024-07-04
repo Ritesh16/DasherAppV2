@@ -3,8 +3,12 @@ import View from "./view.js";
 class DashListView extends View {
   _parentElement = document.querySelector(".dashList");
 
-  addHandlerRender(handler) {
-    window.addEventListener("load", handler);
+  addHandlerRender(handler, loadDirectly = false) {
+    if (loadDirectly) {
+      handler();
+    } else {
+      window.addEventListener("load", handler);
+    }
   }
 
   _generateMarkup() {
