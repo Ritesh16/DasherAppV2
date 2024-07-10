@@ -6,6 +6,7 @@ export const state = {
   totalMileage: 0,
   locations: [],
   dashList: [],
+  weeklyEarnings: [],
   search: {
     fromDate: "10272022",
     toDate: "10092023",
@@ -13,6 +14,8 @@ export const state = {
   },
   headers: {},
 };
+
+export const getWeeklyEarnings = async function () {};
 
 export const getTotalEarned = async function () {
   const data = await callAPI(

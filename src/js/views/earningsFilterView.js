@@ -3,29 +3,29 @@ import View from "./view";
 class EarningsFilterView extends View {
   _parentElement = document.querySelector(".filter");
 
+  addHandleRender(handler) {
+    const links = this._parentElement.querySelectorAll(".form-check-input");
+    links.forEach((link) => {
+      link.addEventListener("click", handler);
+    });
+  }
+
   _generateMarkup() {
     return `
-         <fieldset>
-      <legend class="mt-4">Radio buttons</legend>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-        <label class="form-check-label" for="optionsRadios1">
-          Option one is this and that—be sure to include why it's great
-        </label>
+      <div class="row">
+      <div class="col-2" style="text-align: left">
+       <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="Weekly" checked>
+       Weekly
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        <label class="form-check-label" for="optionsRadios2">
-          Option two can be something else and selecting it will deselect option one
-        </label>
+      <div class="col-2" style="text-align: left">
+        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="Monthly">
+        Monthly
       </div>
-      <div class="form-check disabled">
-        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
-        <label class="form-check-label" for="optionsRadios3">
-          Option three is disabled
-        </label>
+      <div class="col-2" style="text-align: left">
+        <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="Daily">
+        Daily
       </div>
-    </fieldset>
+    </div>
         `;
   }
 }

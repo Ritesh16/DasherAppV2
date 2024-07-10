@@ -1,4 +1,5 @@
 import * as model from "./model.js";
+import * as modelMock from "./modelMock.js";
 import totalEarnedView from "./views/totalEarnedView";
 import totalMileageView from "./views/totalMileageView";
 import dateFilterView from "./views/dateFilterView";
@@ -7,6 +8,7 @@ import paginationView from "./views/paginationView";
 import earningsView from "./views/earningsView";
 import EarningsFilterView from "./views/earningsFilterView";
 import earningsFilterView from "./views/earningsFilterView";
+import weeklyEarningsView from "./views/weeklyEarningsView";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -28,11 +30,27 @@ const controlFilter = async function () {
 const loadEarnings = async function () {
   // call to load earnings
   earningsView.render();
-  earningsFilterView.render(model);
   clearDashes();
+  earningsFilterView.render();
+  earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+};
+
+const earningsRadioButtonsClick = async function (e) {
+  debugger;
+  if (e.target.value == "Weekly") {
+    debugger;
+
+    await modelMock.getWeeklyEarnings();
+    weeklyEarningsView.render(model);
+    clearDashes();
+    earningsFilterView.render();
+    earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+  }
+  console.log("target", e.target.value);
 };
 
 const searchFilter = async function () {
+  clearDashes();
   dashListView.renderSpinner();
   model.state.search.fromDate = document.querySelector(".fromDate").value;
   model.state.search.toDate = document.querySelector(".toDate").value;
