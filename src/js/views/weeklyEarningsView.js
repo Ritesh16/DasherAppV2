@@ -5,6 +5,7 @@ class WeeklyEarningsView extends View {
 
   _generateMarkup() {
     return `
+    <h3>Weekly Earnings</h3>
     <table class="table table-hover">
     <!--!-->
     <thead>

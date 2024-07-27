@@ -19,7 +19,5 @@ export const getWeeklyEarnings = async function () {
   ];
 
   const resolvedPromises = await Promise.all(promiseArray);
-  model.weeklyEarnings = resolvedPromises;
-
-  console.log(resolvedPromises);
+  state.weeklyEarnings = resolvedPromises;
 };

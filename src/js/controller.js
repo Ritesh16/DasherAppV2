@@ -29,24 +29,30 @@ const controlFilter = async function () {
 
 const loadEarnings = async function () {
   // call to load earnings
-  earningsView.render();
+  // earningsView.render();
+  // clearDashes();
+  // earningsFilterView.render();
+  // earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+  debugger;
+  await modelMock.getWeeklyEarnings();
+  weeklyEarningsView.render(modelMock);
   clearDashes();
   earningsFilterView.render();
   earningsFilterView.addHandleRender(earningsRadioButtonsClick);
 };
 
 const earningsRadioButtonsClick = async function (e) {
-  debugger;
   if (e.target.value == "Weekly") {
-    debugger;
-
     await modelMock.getWeeklyEarnings();
-    weeklyEarningsView.render(model);
+    weeklyEarningsView.render(modelMock);
     clearDashes();
     earningsFilterView.render();
     earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+  } else if (e.target.value == "Monthly") {
+    document.querySelector(".dashList").innerHTML = "";
+  } else {
   }
-  console.log("target", e.target.value);
+  console.log("target11", e.target.value);
 };
 
 const searchFilter = async function () {
