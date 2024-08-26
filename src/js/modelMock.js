@@ -4,6 +4,7 @@ export const state = {
   locations: [],
   dashList: [],
   weeklyEarnings: [],
+  monthlyEarnings: [],
   search: {
     fromDate: "10272022",
     toDate: "10092023",
@@ -12,12 +13,64 @@ export const state = {
   headers: {},
 };
 
-export const getWeeklyEarnings = async function () {
+export const getWeeklyEarnings = async function (pageNumber = 1) {
+  console.log("week", pageNumber);
+  let promiseArray = [];
+  for (let i = 1; i <= 72; i++) {
+    promiseArray.push({
+      id: i,
+      from: "5/13/2024",
+      to: "5/20/2024",
+      amount: 114.03 + i + 10,
+    });
+  }
+
+  state.headers = {
+    currentPage: pageNumber,
+    itemsPerPage: 10,
+    totalItems: 72,
+    totalPages: 8,
+    firstPage: 1,
+  };
+
+  const resolvedPromises = await Promise.all(
+    promiseArray.slice((pageNumber - 1) * 10, pageNumber * 10)
+  );
+
+  state.weeklyEarnings = resolvedPromises;
+};
+
+export const resetHeaders = function () {
+  state.headers = {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 0,
+    totalPages: 0,
+    firstPage: 1,
+  };
+};
+
+export const getMonthlyEarnings = async function (month = 8) {
+  console.log("month", month);
   const promiseArray = [
-    { id: 20, from: "5/13/2024", to: "5/20/2024", amount: "114.03" },
-    { id: 19, from: "5/13/2024", to: "5/20/2024", amount: "114.03" },
+    { month: "August", year: "2024", amount: "0" },
+    { month: "July", year: "2024", amount: "114.03" },
+    { month: "June", year: "2024", amount: "114.03" },
+    { month: "May", year: "2024", amount: "114.03" },
+    { month: "April", year: "2024", amount: "114.03" },
+    { month: "March", year: "2024", amount: "114.03" },
+    { month: "February", year: "2024", amount: "114.03" },
+    { month: "January", year: "2024", amount: "114.03" },
+    { month: "December", year: "2023", amount: "114.03" },
   ];
 
-  const resolvedPromises = await Promise.all(promiseArray);
-  state.weeklyEarnings = resolvedPromises;
+  state.headers = {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 12,
+    totalPages: 2,
+    firstPage: 1,
+  };
+  const resolvedPromises = await Promise.all(promiseArray.slice(0, 12));
+  state.monthlyEarnings = resolvedPromises;
 };

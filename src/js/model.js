@@ -7,6 +7,7 @@ export const state = {
   locations: [],
   dashList: [],
   weeklyEarnings: [],
+  monthlyEarnings: [],
   search: {
     fromDate: "10272022",
     toDate: "10092023",

@@ -9,6 +9,8 @@ import earningsView from "./views/earningsView";
 import EarningsFilterView from "./views/earningsFilterView";
 import earningsFilterView from "./views/earningsFilterView";
 import weeklyEarningsView from "./views/weeklyEarningsView";
+import monthlyEarningsView from "./views/monthlyEarningsView.js";
+import paginationView2 from "./views/paginationView2.js";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -28,31 +30,44 @@ const controlFilter = async function () {
 };
 
 const loadEarnings = async function () {
-  // call to load earnings
-  // earningsView.render();
-  // clearDashes();
-  // earningsFilterView.render();
-  // earningsFilterView.addHandleRender(earningsRadioButtonsClick);
-  debugger;
+  document.getElementById("pageList").innerHTML = "";
   await modelMock.getWeeklyEarnings();
   weeklyEarningsView.render(modelMock);
   clearDashes();
   earningsFilterView.render();
   earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+  paginationView2.render(modelMock);
+  paginationView2.addHandlerClick(handleWeeklyEarningsPagination, 1001);
+};
+
+const handleWeeklyEarningsPagination = async function (goto) {
+  await modelMock.getWeeklyEarnings(goto);
+  weeklyEarningsView.render(modelMock);
+  paginationView2.render(modelMock);
+};
+
+const handleMonthlyEarningsPagination = async function (goto) {
+  await modelMock.getMonthlyEarnings(goto);
+  monthlyEarningsView.render(modelMock);
+  paginationView2.render(modelMock);
 };
 
 const earningsRadioButtonsClick = async function (e) {
+  modelMock.resetHeaders();
+
   if (e.target.value == "Weekly") {
     await modelMock.getWeeklyEarnings();
     weeklyEarningsView.render(modelMock);
-    clearDashes();
-    earningsFilterView.render();
-    earningsFilterView.addHandleRender(earningsRadioButtonsClick);
+    paginationView2.addHandlerClick(handleWeeklyEarningsPagination, 1001);
   } else if (e.target.value == "Monthly") {
+    await modelMock.getMonthlyEarnings();
     document.querySelector(".dashList").innerHTML = "";
+    monthlyEarningsView.render(modelMock);
+    paginationView2.render(modelMock);
+    debugger;
+    paginationView2.addHandlerClick(handleMonthlyEarningsPagination, 2001);
   } else {
   }
-  console.log("target11", e.target.value);
 };
 
 const searchFilter = async function () {
@@ -80,7 +95,7 @@ const controlDashList = async function () {
   dashListView.render(model);
 
   model.state.headers.firstPage = 1;
-  paginationView.render(model);
+  paginationView.render(model.state.headers);
   paginationView.addHandlerClick(controlPagination);
 };
 
@@ -115,10 +130,8 @@ const controlPagination = async function (goTo) {
     document.getElementById("appArea").innerHTML = "";
     await model.getDashList();
     dashListView.render(model);
-
     model.state.headers.firstPage = firstPage;
-
-    paginationView.render(model);
+    paginationView.render(model.state.headers);
   }
 };
 
@@ -148,5 +161,10 @@ const clearDashes = function () {
   document.getElementById("filter").innerHTML = "";
   document.getElementById("pageList").innerHTML = "";
 };
+
+const clearPagination = function () {
+  document.getElementById("pageList").innerHTML = "";
+};
+
 init();
 loadLinks();
