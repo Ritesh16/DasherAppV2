@@ -5,6 +5,15 @@ export const state = {
   dashList: [],
   weeklyEarnings: [],
   monthlyEarnings: [],
+  earnings: {
+    monthlyEarnings: {
+      years: [2022, 2023, 2024],
+      filter: {
+        year: 2024,
+      },
+      data: [],
+    },
+  },
   search: {
     fromDate: "10272022",
     toDate: "10092023",
