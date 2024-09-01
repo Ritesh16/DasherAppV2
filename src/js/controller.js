@@ -47,9 +47,14 @@ const handleWeeklyEarningsPagination = async function (goto) {
 };
 
 const handleMonthlyEarningsPagination = async function (goto) {
+  console.log(goto);
   await modelMock.getMonthlyEarnings(goto);
   monthlyEarningsView.render(modelMock);
   paginationView2.render(modelMock);
+};
+
+const searchMonthlyEarnings = async function () {
+  console.log("searching begins");
 };
 
 const earningsRadioButtonsClick = async function (e) {
@@ -58,14 +63,17 @@ const earningsRadioButtonsClick = async function (e) {
   if (e.target.value == "Weekly") {
     await modelMock.getWeeklyEarnings();
     weeklyEarningsView.render(modelMock);
-    paginationView2.addHandlerClick(handleWeeklyEarningsPagination, 1001);
+    paginationView2.addHandlerClick(handleWeeklyEarningsPagination);
   } else if (e.target.value == "Monthly") {
     await modelMock.getMonthlyEarnings();
     document.querySelector(".dashList").innerHTML = "";
     monthlyEarningsView.render(modelMock);
+    monthlyEarningsView.addHandlerOnSearch(searchMonthlyEarnings);
     paginationView2.render(modelMock);
-    debugger;
-    paginationView2.addHandlerClick(handleMonthlyEarningsPagination, 2001);
+    paginationView2.addHandlerClick(handleMonthlyEarningsPagination);
+    monthlyEarningsView.setSelectedYear(
+      modelMock.state.earnings.monthlyEarnings.filter.year
+    );
   } else {
   }
 };

@@ -1,3 +1,16 @@
+export const getYears = function () {
+  let startYear = 2022;
+  const currentYear = new Date().getFullYear();
+
+  let years = [];
+  while (startYear <= currentYear) {
+    years.push(startYear);
+    startYear++;
+  }
+
+  return years;
+};
+
 export const state = {
   totalEarned: 0,
   totalMileage: 0,
@@ -7,9 +20,9 @@ export const state = {
   monthlyEarnings: [],
   earnings: {
     monthlyEarnings: {
-      years: [2022, 2023, 2024],
+      years: getYears(),
       filter: {
-        year: 2024,
+        year: new Date().getFullYear(),
       },
       data: [],
     },
@@ -23,7 +36,6 @@ export const state = {
 };
 
 export const getWeeklyEarnings = async function (pageNumber = 1) {
-  console.log("week", pageNumber);
   let promiseArray = [];
   for (let i = 1; i <= 72; i++) {
     promiseArray.push({
@@ -60,7 +72,6 @@ export const resetHeaders = function () {
 };
 
 export const getMonthlyEarnings = async function (month = 8) {
-  console.log("month", month);
   const promiseArray = [
     { month: "August", year: "2024", amount: "0" },
     { month: "July", year: "2024", amount: "114.03" },
@@ -82,4 +93,6 @@ export const getMonthlyEarnings = async function (month = 8) {
   };
   const resolvedPromises = await Promise.all(promiseArray.slice(0, 12));
   state.monthlyEarnings = resolvedPromises;
+
+  state.earnings.monthlyEarnings.data = resolvedPromises;
 };

@@ -3,10 +3,8 @@ import View from "./view";
 class PaginationView2 extends View {
   _parentElement = document.querySelector(".pagination");
 
-  addHandlerClick(handler, op) {
-    console.log("event send :" + op);
+  addHandlerClick(handler) {
     if (this.clickHandler) {
-      console.log("event removed...");
       this._parentElement.removeEventListener("click", this.clickHandler);
     }
 
@@ -56,7 +54,7 @@ class PaginationView2 extends View {
            <div style="align:right">
               <button data-goto=${
                 currentPage + 1
-              } type="button" class="btn btn-link btn--inline" fdprocessedid="fni8k4">Next</button>
+              } type="button" class="btn btn-link btn--inline">Next</button>
            </div>
 
       `;
