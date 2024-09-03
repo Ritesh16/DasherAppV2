@@ -26,6 +26,13 @@ export const state = {
       },
       data: [],
     },
+    dailyEarnings: {
+      filter: {
+        fromDate: "",
+        toDate: "",
+      },
+      data: [],
+    },
   },
   search: {
     fromDate: "10272022",
@@ -37,13 +44,20 @@ export const state = {
 
 export const getWeeklyEarnings = async function (pageNumber = 1) {
   let promiseArray = [];
+  let from_date = new Date(2024, 4, 13);
+  let to_date = new Date(2024, 4, 20);
+  let fd = new Date(2024, 4, 13);
+
   for (let i = 1; i <= 72; i++) {
     promiseArray.push({
       id: i,
-      from: "5/13/2024",
-      to: "5/20/2024",
+      fromDate: from_date,
+      toDate: to_date,
       amount: 114.03 + i + 10,
     });
+
+    fd.setDate(fd.getDate() - 7);
+    from_date = fd;
   }
 
   state.headers = {
@@ -95,4 +109,32 @@ export const getMonthlyEarnings = async function (month = 8) {
   state.monthlyEarnings = resolvedPromises;
 
   state.earnings.monthlyEarnings.data = resolvedPromises;
+};
+
+export const getDailyEarnings = async function (pageNumber, fromDate, toDate) {
+  const promiseArray = [];
+
+  for (let i = 0; i < 54; i++) {
+    promiseArray.push({
+      date: new Date(),
+      amount: 100 + i,
+      totalMinutes: 10 + i,
+      hourlyRate: 15 + (10 * i) / 10,
+    });
+  }
+
+  state.headers = {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 72,
+    totalPages: 8,
+  };
+  const resolvedPromises = await Promise.all(
+    promiseArray.slice((pageNumber - 1) * 10, pageNumber * 10)
+  );
+
+  state.earnings.dailyEarnings.filter.fromDate = fromDate;
+  state.earnings.dailyEarnings.filter.toDate = toDate;
+
+  state.earnings.dailyEarnings.data = resolvedPromises;
 };

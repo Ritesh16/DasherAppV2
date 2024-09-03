@@ -21,8 +21,8 @@ class WeeklyEarningsView extends View {
       .map(function (dash) {
         return `<tr class=table-primary> 
           <td>${dash.id}</td>
-          <td>${new Date(dash.from).toLocaleDateString()}</td>
-          <td>${new Date(dash.to).toLocaleDateString()}</td>
+          <td>${new Date(dash.fromDate).toLocaleDateString()}</td>
+          <td>${new Date(dash.toDate).toLocaleDateString()}</td>
           <td>${dash.amount.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",

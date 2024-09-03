@@ -15,7 +15,9 @@ class MonthlyEarningView extends View {
   }
 
   addHandlerOnSearch(handler) {
-    document.querySelector(".searchBtn").addEventListener("click", handler);
+    document
+      .querySelector(".searchMonthlyEarningsBtn")
+      .addEventListener("click", handler);
   }
 
   _generateMarkup() {
@@ -36,7 +38,7 @@ class MonthlyEarningView extends View {
                   </select>
               </div>
               <div class="col-2">
-               <button type="button" class="btn btn-primary searchBtn">Search</button>
+               <button type="button" class="btn btn-primary searchMonthlyEarningsBtn">Search</button>
               </div>
       </div>
       <table class="table table-hover">

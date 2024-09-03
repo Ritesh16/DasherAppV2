@@ -11,6 +11,7 @@ import earningsFilterView from "./views/earningsFilterView";
 import weeklyEarningsView from "./views/weeklyEarningsView";
 import monthlyEarningsView from "./views/monthlyEarningsView.js";
 import paginationView2 from "./views/paginationView2.js";
+import dailyEarningsView from "./views/dailyEarningsView.js";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -53,8 +54,16 @@ const handleMonthlyEarningsPagination = async function (goto) {
   paginationView2.render(modelMock);
 };
 
+const handleDailyEarningsPagination = async function (goTo) {
+  console.log(goTo);
+};
+
 const searchMonthlyEarnings = async function () {
-  console.log("searching begins");
+  console.log("monthly earnings search begins");
+};
+
+const searchDailyEarnings = async function () {
+  console.log("daily earnings search begins");
 };
 
 const earningsRadioButtonsClick = async function (e) {
@@ -75,10 +84,22 @@ const earningsRadioButtonsClick = async function (e) {
       modelMock.state.earnings.monthlyEarnings.filter.year
     );
   } else {
+    await modelMock.getDailyEarnings(
+      1,
+      modelMock.state.earnings.dailyEarnings.filter.fromDate,
+      modelMock.state.earnings.dailyEarnings.filter.toDate
+    );
+
+    dailyEarningsView.render(modelMock);
+    dailyEarningsView.addHandleSearch(searchDailyEarnings);
+    dailyEarningsView.showCalendar();
+    paginationView2.render(modelMock);
+    paginationView2.addHandlerClick(handleDailyEarningsPagination);
   }
 };
 
 const searchFilter = async function () {
+  debugger;
   clearDashes();
   dashListView.renderSpinner();
   model.state.search.fromDate = document.querySelector(".fromDate").value;
