@@ -99,8 +99,6 @@ const earningsRadioButtonsClick = async function (e) {
 };
 
 const searchFilter = async function () {
-  debugger;
-  clearDashes();
   dashListView.renderSpinner();
   model.state.search.fromDate = document.querySelector(".fromDate").value;
   model.state.search.toDate = document.querySelector(".toDate").value;
@@ -109,7 +107,10 @@ const searchFilter = async function () {
     locationElement.options[locationElement.selectedIndex].innerText;
 
   model.state.search.location = location;
+
   await model.getDashList();
+  debugger;
+  //clearDashes();
   dashListView.render(model);
 
   model.state.headers.firstPage = 1;
@@ -124,7 +125,7 @@ const controlDashList = async function () {
   dashListView.render(model);
 
   model.state.headers.firstPage = 1;
-  paginationView.render(model.state.headers);
+  paginationView.render(model);
   paginationView.addHandlerClick(controlPagination);
 };
 

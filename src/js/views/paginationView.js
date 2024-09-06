@@ -20,8 +20,8 @@ class PaginationView extends View {
   }
 
   _generateMarkup() {
-    //const headers = this._data.state.headers;
-    const headers = this._data;
+    debugger;
+    const headers = this._data.state.headers;
     const currentPage = headers.currentPage;
     const lastPage = headers.totalPages;
     let firstPage = headers.firstPage;
