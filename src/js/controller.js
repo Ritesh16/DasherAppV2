@@ -12,6 +12,7 @@ import weeklyEarningsView from "./views/weeklyEarningsView";
 import monthlyEarningsView from "./views/monthlyEarningsView.js";
 import paginationView2 from "./views/paginationView2.js";
 import dailyEarningsView from "./views/dailyEarningsView.js";
+import statisticsView from "./views/statisticsView.js";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -39,6 +40,11 @@ const loadEarnings = async function () {
   earningsFilterView.addHandleRender(earningsRadioButtonsClick);
   paginationView2.render(modelMock);
   paginationView2.addHandlerClick(handleWeeklyEarningsPagination, 1001);
+};
+
+const loadStatistics = async function () {
+  clearDashes();
+  statisticsView.render(modelMock);
 };
 
 const handleWeeklyEarningsPagination = async function (goto) {
@@ -109,8 +115,6 @@ const searchFilter = async function () {
   model.state.search.location = location;
 
   await model.getDashList();
-  debugger;
-  //clearDashes();
   dashListView.render(model);
 
   model.state.headers.firstPage = 1;
@@ -161,16 +165,18 @@ const controlPagination = async function (goTo) {
     await model.getDashList();
     dashListView.render(model);
     model.state.headers.firstPage = firstPage;
-    paginationView.render(model.state.headers);
+    paginationView.render(model);
   }
 };
 
 const loadLinks = function () {
   const earningsLink = document.querySelector("#earnings-link");
   const dashLink = document.querySelector("#dashapp-link");
+  const statisticsLink = document.querySelector("#statistics-link");
 
   earningsLink.addEventListener("click", loadEarnings);
   dashLink.addEventListener("click", loadDashesDirectly);
+  statisticsLink.addEventListener("click", loadStatistics);
 };
 
 const init = function () {
