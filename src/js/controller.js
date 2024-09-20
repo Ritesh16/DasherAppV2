@@ -42,11 +42,6 @@ const loadEarnings = async function () {
   paginationView2.addHandlerClick(handleWeeklyEarningsPagination, 1001);
 };
 
-const loadStatistics = async function () {
-  clearDashes();
-  statisticsView.render(modelMock);
-};
-
 const handleWeeklyEarningsPagination = async function (goto) {
   await modelMock.getWeeklyEarnings(goto);
   weeklyEarningsView.render(modelMock);
@@ -177,6 +172,11 @@ const loadLinks = function () {
   earningsLink.addEventListener("click", loadEarnings);
   dashLink.addEventListener("click", loadDashesDirectly);
   statisticsLink.addEventListener("click", loadStatistics);
+};
+
+const loadStatistics = async function () {
+  clearDashes();
+  statisticsView.render(modelMock);
 };
 
 const init = function () {

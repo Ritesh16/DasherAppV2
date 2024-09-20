@@ -9,7 +9,7 @@
   "author": "Ritesh Sharma",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.9.3"
+    "parcel": "^2.12.0"
   },
   "dependencies": {
     "js-datepicker": "^5.18.2"
