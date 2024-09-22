@@ -34,6 +34,12 @@ export const state = {
       data: [],
     },
   },
+  statistics: {
+    topEarnings: {
+      page: 1,
+      data: []
+    }
+  },
   search: {
     fromDate: "10272022",
     toDate: "10092023",
@@ -138,3 +144,20 @@ export const getDailyEarnings = async function (pageNumber, fromDate, toDate) {
 
   state.earnings.dailyEarnings.data = resolvedPromises;
 };
+
+export const getTopEarnings = async function(pageNumber) {
+  let promiseArray = [];
+  let fd = new Date(2024, 4, 13);
+
+  for (let i = 1; i <= 5*pageNumber; i++) {
+    promiseArray.push({
+      date: fd,
+      amount: 70 + i - 10,
+    });
+
+    fd.setDate(fd.getDate() - 1);
+  }
+
+  state.statistics.topEarnings.page = pageNumber;
+  state.statistics.topEarnings.data = promiseArray;
+}

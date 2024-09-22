@@ -13,6 +13,7 @@ import monthlyEarningsView from "./views/monthlyEarningsView.js";
 import paginationView2 from "./views/paginationView2.js";
 import dailyEarningsView from "./views/dailyEarningsView.js";
 import statisticsView from "./views/statisticsView.js";
+import topEarningDays from "./views/partialViews/topEarningDaysView.js";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -174,9 +175,10 @@ const loadLinks = function () {
   statisticsLink.addEventListener("click", loadStatistics);
 };
 
-const loadStatistics = async function () {
+const loadStatistics =  function () {
   clearDashes();
   statisticsView.render(modelMock);
+  loadTopEarnings();
 };
 
 const init = function () {
@@ -198,9 +200,19 @@ const clearDashes = function () {
   document.getElementById("pageList").innerHTML = "";
 };
 
-const clearPagination = function () {
-  document.getElementById("pageList").innerHTML = "";
+
+const loadTopEarnings = async function() {
+  modelMock.getTopEarnings(1);
+  const topEarningDaysView = await loadTopEarningDaysView();
+  topEarningDaysView.render(modelMock);
 };
+
+async function loadTopEarningDaysView() {
+  const module = await import('./views/partialViews/topEarningDaysView.js');  // Dynamic import
+  const TopEarningDaysView = module.default;               // Access default export
+  const topEarningsView = new TopEarningDaysView();               // Create instance
+  return topEarningsView;
+}
 
 init();
 loadLinks();

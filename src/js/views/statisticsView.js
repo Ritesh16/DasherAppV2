@@ -7,7 +7,7 @@ class StatisticsView extends View {
     return `
     <h2>Statistics</h2>
     <div class="row">
-        <div class="col-4">
+        <div class="col-4" id="topEarningDays">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Top Earning Days</div>
                 <div class="card-body">
