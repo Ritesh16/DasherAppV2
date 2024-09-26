@@ -205,9 +205,20 @@ const loadTopEarnings = async function() {
   modelMock.getTopEarnings(1);
   const topEarningDaysView = await loadTopEarningDaysView();
   topEarningDaysView.render(modelMock);
+  topEarningDaysView.addLoadMoreHandler(loadMoreTopEarnings);
 };
 
-async function loadTopEarningDaysView() {
+const loadMoreTopEarnings = async function() {
+  debugger;
+  console.log('load more...');
+  const pageNumber = modelMock.state.statistics.topEarnings.page + 1;
+  modelMock.getTopEarnings(pageNumber);
+  const topEarningDaysView = await loadTopEarningDaysView();
+  topEarningDaysView.render(modelMock);
+  topEarningDaysView.addLoadMoreHandler(loadMoreTopEarnings);
+} 
+
+const loadTopEarningDaysView = async function() {
   const module = await import('./views/partialViews/topEarningDaysView.js');  // Dynamic import
   const TopEarningDaysView = module.default;               // Access default export
   const topEarningsView = new TopEarningDaysView();               // Create instance

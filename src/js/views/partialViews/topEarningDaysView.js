@@ -1,6 +1,10 @@
 export default class TopEarningDaysView  {
     _parentElement = document.querySelector('#topEarningDays');
 
+    addLoadMoreHandler(handler) {
+      document.querySelector(".topEarningsLoadMoreLink").addEventListener("click", handler);
+    }
+
     _generateMarkup() {
       
         return `
@@ -17,7 +21,7 @@ export default class TopEarningDaysView  {
                         <tbody>
                         ${this._data.state.statistics.topEarnings.data
                             .map(function (dash) {
-                              return `<tr class=table-primary> 
+                              return `<tr class=table-active> 
                                 <td>${new Date(dash.date).toLocaleDateString()}</td>
                                 <td>${dash.amount.toLocaleString("en-US", {
                                   style: "currency",
@@ -29,7 +33,7 @@ export default class TopEarningDaysView  {
                         </tbody>
                      </table> 
                      <div class="row" stlye="text-align:right">
-                        <a class="card-link" style="text-align:right">Load More</a>
+                        <a class="card-link topEarningsLoadMoreLink" style="text-align:right; cursor:pointer">Load More</a>
                      </div>
                 </div>
         </div>
