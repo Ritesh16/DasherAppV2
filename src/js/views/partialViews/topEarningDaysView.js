@@ -5,8 +5,11 @@ export default class TopEarningDaysView  {
       document.querySelector(".topEarningsLoadMoreLink").addEventListener("click", handler);
     }
 
+    addShowLessHandler(handler) {
+      document.querySelector(".topEarningsShowLessLink").addEventListener("click", handler);
+    }
+
     _generateMarkup() {
-      
         return `
          <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Top Earning Days</div>
@@ -33,7 +36,14 @@ export default class TopEarningDaysView  {
                         </tbody>
                      </table> 
                      <div class="row" stlye="text-align:right">
-                        <a class="card-link topEarningsLoadMoreLink" style="text-align:right; cursor:pointer">Load More</a>
+                        <div class="col-4">
+                          ${this._data.state.statistics.topEarnings.page > 1 ? '<a class="card-link topEarningsShowLessLink" style="text-align:right; cursor:pointer">Show Less</a>' : '' }
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <div class="col-5"> 
+                          <a class="card-link topEarningsLoadMoreLink" style="text-align:right; cursor:pointer">Load More</a>
+                        </div>
                      </div>
                 </div>
         </div>

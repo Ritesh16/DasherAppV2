@@ -202,21 +202,22 @@ const clearDashes = function () {
 
 
 const loadTopEarnings = async function() {
-  modelMock.getTopEarnings(1);
-  const topEarningDaysView = await loadTopEarningDaysView();
-  topEarningDaysView.render(modelMock);
-  topEarningDaysView.addLoadMoreHandler(loadMoreTopEarnings);
+  await loadTopEarningsByPageNumber(1);
 };
 
 const loadMoreTopEarnings = async function() {
-  debugger;
-  console.log('load more...');
   const pageNumber = modelMock.state.statistics.topEarnings.page + 1;
+  await loadTopEarningsByPageNumber(pageNumber);
+} 
+
+const loadTopEarningsByPageNumber = async function(pageNumber) {
   modelMock.getTopEarnings(pageNumber);
   const topEarningDaysView = await loadTopEarningDaysView();
   topEarningDaysView.render(modelMock);
   topEarningDaysView.addLoadMoreHandler(loadMoreTopEarnings);
-} 
+  if(pageNumber > 1)
+    topEarningDaysView.addShowLessHandler(loadTopEarnings);
+}
 
 const loadTopEarningDaysView = async function() {
   const module = await import('./views/partialViews/topEarningDaysView.js');  // Dynamic import

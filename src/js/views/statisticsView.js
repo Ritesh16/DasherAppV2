@@ -45,7 +45,7 @@ class StatisticsView extends View {
         </div>
         <div class="col-4">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Top Mileage</div>
+                <div class="card-header">Top Highest Dashes</div>
                 <div class="card-body">
                     <div class="card-body">
                        <table class="table table-hover">
@@ -119,7 +119,7 @@ class StatisticsView extends View {
     <div class="row">
         <div class="col-4">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header">Top Earning Days</div>
+                <div class="card-header">Top Busy Restaurants</div>
                 <div class="card-body">
                        <table class="table table-hover">
                         <thead>
