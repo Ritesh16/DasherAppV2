@@ -43,7 +43,7 @@ class StatisticsView extends View {
                 
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4" id="topHighestDashes">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Top Highest Dashes</div>
                 <div class="card-body">

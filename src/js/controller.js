@@ -179,6 +179,7 @@ const loadStatistics =  function () {
   clearDashes();
   statisticsView.render(modelMock);
   loadTopEarnings();
+  loadTopDashes();
 };
 
 const init = function () {
@@ -201,6 +202,7 @@ const clearDashes = function () {
 };
 
 
+//  Partial Views Data methods
 const loadTopEarnings = async function() {
   await loadTopEarningsByPageNumber(1);
 };
@@ -219,11 +221,39 @@ const loadTopEarningsByPageNumber = async function(pageNumber) {
     topEarningDaysView.addShowLessHandler(loadTopEarnings);
 }
 
+
+const loadTopDashes = async function() {
+  await loadTopDashesByPageNumber(1);
+};
+
+const loadMoreTopDashes = async function() {
+  const pageNumber = modelMock.state.statistics.topDashes.page + 1;
+  await loadTopDashesByPageNumber(pageNumber);
+} 
+
+const loadTopDashesByPageNumber = async function(pageNumber) {
+  modelMock.getTopDashes(pageNumber);
+  const topDashesView = await loadTopDashesView();
+  topDashesView.render(modelMock);
+  topDashesView.addLoadMoreHandler(loadMoreTopDashes);
+  if(pageNumber > 1)
+    topDashesView.addShowLessHandler(loadTopDashes);
+}
+
+
+//  Partial Views
 const loadTopEarningDaysView = async function() {
   const module = await import('./views/partialViews/topEarningDaysView.js');  // Dynamic import
   const TopEarningDaysView = module.default;               // Access default export
   const topEarningsView = new TopEarningDaysView();               // Create instance
   return topEarningsView;
+}
+
+const loadTopDashesView = async function() {
+  const module = await import('./views/partialViews/topDashesView.js');  // Dynamic import
+  const TopDashesView = module.default;               // Access default export
+  const topDashesView = new TopDashesView();               // Create instance
+  return topDashesView;
 }
 
 init();
