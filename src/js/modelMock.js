@@ -195,11 +195,12 @@ export const getTopHourlyRates = async function(pageNumber) {
     promiseArray.push({
       date: fd,
       amount: 170 + i - 10,
+      hourlyRate:  20 + i
     });
 
     fd.setDate(fd.getDate() - 1);
   }
 
-  state.statistics.topDashes.page = pageNumber;
-  state.statistics.topDashes.data = promiseArray;
+  state.statistics.topHourlyRates.page = pageNumber;
+  state.statistics.topHourlyRates.data = promiseArray;
 }

@@ -1,12 +1,12 @@
 export default class TopHourlyRateView {
-    _parentElement = document.querySelector('#topHighestDashes');
+    _parentElement = document.querySelector('#topHourlyRate');
 
     addLoadMoreHandler(handler) {
-      document.querySelector(".topDashesLoadMoreLink").addEventListener("click", handler);
+      document.querySelector(".topHourlyRateLoadMoreLink").addEventListener("click", handler);
     }
 
     addShowLessHandler(handler) {
-      document.querySelector(".topDashesShowLessLink").addEventListener("click", handler);
+      document.querySelector(".topHourlyRateShowLessLink").addEventListener("click", handler);
     }
 
     _generateMarkup() {
@@ -42,12 +42,12 @@ export default class TopHourlyRateView {
                      </table> 
                      <div class="row" stlye="text-align:right">
                         <div class="col-4">
-                          ${this._data.state.statistics.topEarnings.page > 1 ? '<a class="card-link topEarningsShowLessLink" style="text-align:right; cursor:pointer">Show Less</a>' : '' }
+                          ${this._data.state.statistics.topHourlyRates.page > 1 ? '<a class="card-link topHourlyRateShowLessLink" style="text-align:right; cursor:pointer">Show Less</a>' : '' }
                         </div>
                         <div class="col-3">
                         </div>
                         <div class="col-5"> 
-                          <a class="card-link topEarningsLoadMoreLink" style="text-align:right; cursor:pointer">Load More</a>
+                          <a class="card-link topHourlyRateLoadMoreLink" style="text-align:right; cursor:pointer">Load More</a>
                         </div>
                      </div>
                 </div>

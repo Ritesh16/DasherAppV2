@@ -180,6 +180,7 @@ const loadStatistics =  function () {
   statisticsView.render(modelMock);
   loadTopEarnings();
   loadTopDashes();
+  loadTopHourlyRates();
 };
 
 const init = function () {
@@ -240,6 +241,23 @@ const loadTopDashesByPageNumber = async function(pageNumber) {
     topDashesView.addShowLessHandler(loadTopDashes);
 }
 
+const loadTopHourlyRates = async function() {
+  await loadTopHourlyRatesByPageNumber(1);
+};
+
+const loadMoreTopHourlyRates = async function() {
+  const pageNumber = modelMock.state.statistics.topHourlyRates.page + 1;
+  await loadTopHourlyRatesByPageNumber(pageNumber);
+} 
+
+const loadTopHourlyRatesByPageNumber = async function(pageNumber) {
+  modelMock.getTopHourlyRates(pageNumber);
+  const topHourlyRatesView = await loadTopHourlyRatesView();
+  topHourlyRatesView.render(modelMock);
+  topHourlyRatesView.addLoadMoreHandler(loadMoreTopHourlyRates);
+  if(pageNumber > 1)
+    topHourlyRatesView.addShowLessHandler(loadTopHourlyRates);
+}
 
 //  Partial Views
 const loadTopEarningDaysView = async function() {
@@ -254,6 +272,13 @@ const loadTopDashesView = async function() {
   const TopDashesView = module.default;               // Access default export
   const topDashesView = new TopDashesView();               // Create instance
   return topDashesView;
+}
+
+const loadTopHourlyRatesView = async function() {
+  const module = await import('./views/partialViews/topHourlyRateView.js');  // Dynamic import
+  const TopHourlyRatesView = module.default;               // Access default export
+  const topHourlyRatesView = new TopHourlyRatesView();               // Create instance
+  return topHourlyRatesView;
 }
 
 init();
