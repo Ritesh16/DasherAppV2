@@ -14,7 +14,7 @@ export default class View {
   renderSpinner = function () {
     this._clear();
     const markup = `
-    <img src="loading.418a60b0.gif" style="height: 50px;" />
+    <img src="loading.gif" style="height: 50px;" />
     `;
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   };

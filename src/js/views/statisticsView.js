@@ -80,7 +80,7 @@ class StatisticsView extends View {
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4" id="topHourlyRate">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Top Hourly Rate</div>
                 <div class="card-body">
@@ -89,28 +89,33 @@ class StatisticsView extends View {
                             <tr>
                              <th scope="col">Date</th>
                              <th scope="col">Amount</th>
+                             <th scope="col">Hourly Rate</th>
                             </tr>
                         </thead>
                         <tbody>
                         <tr class="table-active">
                             <th scope="row">3/10/2024</th>
                             <td>$179</td>
+                            <td>$33.5</td>
                         </tr>
                         <tr class="table-active">
                             <th scope="row">3/10/2024</th>
                             <td>$179</td>
+                            <td>$31.2</td>
                         </tr>
                          <tr class="table-active">
                             <th scope="row">3/10/2024</th>
                             <td>$179</td>
+                            <td>$31.2</td>
                         </tr> <tr class="table-active">
                             <th scope="row">3/10/2024</th>
                             <td>$179</td>
+                            <td>$31.1</td>
                         </tr>
                         </tbody>
                      </table> 
                      <div class="row" stlye="text-align:right">
-                        <a class="card-link" style="text-align:right">Load More</a>
+                        <a class="card-link" style="text-align:right; cursor: pointer">Load More</a>
                      </div>
                 </div>
             </div>

@@ -42,6 +42,10 @@ export const state = {
     topDashes: {
       page: 1,
       data: []
+    },
+    topHourlyRates: {
+      page: 1,
+      data: []
     }
   },
   search: {
@@ -167,6 +171,23 @@ export const getTopEarnings = async function(pageNumber) {
 }
 
 export const getTopDashes = async function(pageNumber) {
+  let promiseArray = [];
+  let fd = new Date(2024, 4, 13);
+
+  for (let i = 1; i <= 5*pageNumber; i++) {
+    promiseArray.push({
+      date: fd,
+      amount: 170 + i - 10,
+    });
+
+    fd.setDate(fd.getDate() - 1);
+  }
+
+  state.statistics.topDashes.page = pageNumber;
+  state.statistics.topDashes.data = promiseArray;
+}
+
+export const getTopHourlyRates = async function(pageNumber) {
   let promiseArray = [];
   let fd = new Date(2024, 4, 13);
 
