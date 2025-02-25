@@ -50,7 +50,12 @@ export const state = {
     topBusyRestaurants: {
       page: 1,
       data: []
-    }
+    },
+    highestMileage: {
+      page: 1,
+      data: []
+    },
+    
   },
   search: {
     fromDate: "10272022",
@@ -222,4 +227,22 @@ export const getTopBusyRestaurants = async function(pageNumber) {
 
   state.statistics.topBusyRestaurants.page = pageNumber;
   state.statistics.topBusyRestaurants.data = promiseArray;
+}
+
+export const getHighestMileage = async function(pageNumber) {
+  let promiseArray = [];
+  let fd = new Date(2024, 4, 13);
+
+  for (let i = 1; i <= 5*pageNumber; i++) {
+    promiseArray.push({
+      date: fd,
+      mileage:  50 - i
+    });
+
+    
+    fd.setDate(fd.getDate() - 1);
+  }
+
+  state.statistics.highestMileage.page = pageNumber;
+  state.statistics.highestMileage.data = promiseArray;
 }

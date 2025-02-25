@@ -182,6 +182,7 @@ const loadStatistics =  function () {
   loadTopDashes();
   loadTopHourlyRates();
   loadTopBusyRestaurants();
+  loadTopMileage(); 
 };
 
 const init = function () {
@@ -278,6 +279,24 @@ const loadTopBusyRestaurantsByPageNumber = async function(pageNumber) {
     topBusyRestaurantsView.addShowLessHandler(loadTopBusyRestaurants);
 }
 
+const loadTopMileage = async function() {
+  await loadTopMileageByPageNumber(1);
+};
+
+const loadMoreTopMileage = async function() {
+  const pageNumber = modelMock.state.statistics.highestMileage.page + 1;
+  await loadTopMileageByPageNumber(pageNumber);
+} 
+
+const loadTopMileageByPageNumber = async function(pageNumber) {
+  modelMock.getHighestMileage(pageNumber);
+  const topMileageView = await loadTopMileageView();
+  topMileageView.render(modelMock);
+  topMileageView.addLoadMoreHandler(loadMoreTopMileage);
+  if(pageNumber > 1)
+    topMileageView.addShowLessHandler(loadTopMileage);
+}
+
 //  Partial Views
 const loadTopEarningDaysView = async function() {
   const module = await import('./views/partialViews/topEarningDaysView.js');  // Dynamic import
@@ -301,10 +320,17 @@ const loadTopHourlyRatesView = async function() {
 }
 
 const loadTopBusyRestaurantsView = async function() {
-  const module = await import('./views/partialViews/topBusyRestaurants.js');  // Dynamic import
+  const module = await import('./views/partialViews/topBusyRestaurantsView.js');  // Dynamic import
   const TopBusyRestaurantsView = module.default;               // Access default export
   const topBusyRestaurantsView = new TopBusyRestaurantsView();               // Create instance
   return topBusyRestaurantsView;
+}
+
+const loadTopMileageView = async function() {
+  const module = await import('./views/partialViews/topMileageView.js');  // Dynamic import
+  const TopMileageView = module.default;               // Access default export
+  const topMileageView = new TopMileageView();               // Create instance
+  return topMileageView;
 }
 
 
