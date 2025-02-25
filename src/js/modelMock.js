@@ -46,6 +46,10 @@ export const state = {
     topHourlyRates: {
       page: 1,
       data: []
+    },
+    topBusyRestaurants: {
+      page: 1,
+      data: []
     }
   },
   search: {
@@ -203,4 +207,19 @@ export const getTopHourlyRates = async function(pageNumber) {
 
   state.statistics.topHourlyRates.page = pageNumber;
   state.statistics.topHourlyRates.data = promiseArray;
+}
+
+export const getTopBusyRestaurants = async function(pageNumber) {
+  let promiseArray = [];
+
+  for (let i = 1; i <= 5*pageNumber; i++) {
+    promiseArray.push({
+      name: 'Restaurant ' + i,
+      amount: 170 + i - 10,
+      deliveries:  100 - i
+    });
+  }
+
+  state.statistics.topBusyRestaurants.page = pageNumber;
+  state.statistics.topBusyRestaurants.data = promiseArray;
 }

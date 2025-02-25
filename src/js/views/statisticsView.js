@@ -122,7 +122,7 @@ class StatisticsView extends View {
         </div>
     </div>
     <div class="row">
-        <div class="col-4">
+        <div class="col-4" id="topBusyRestaurants">
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Top Busy Restaurants</div>
                 <div class="card-body">
