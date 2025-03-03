@@ -14,6 +14,8 @@ import paginationView2 from "./views/paginationView2.js";
 import dailyEarningsView from "./views/dailyEarningsView.js";
 import statisticsView from "./views/statisticsView.js";
 import topEarningDays from "./views/partialViews/topEarningDaysView.js";
+import AddDashView from "./views/addDashView.js";
+import addDashView from "./views/addDashView.js";
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -165,17 +167,23 @@ const controlPagination = async function (goTo) {
   }
 };
 
+
+// Load Links
 const loadLinks = function () {
   const earningsLink = document.querySelector("#earnings-link");
   const dashLink = document.querySelector("#dashapp-link");
   const statisticsLink = document.querySelector("#statistics-link");
+  const addDashLink = document.querySelector("#addDash-link");
+
 
   earningsLink.addEventListener("click", loadEarnings);
   dashLink.addEventListener("click", loadDashesDirectly);
   statisticsLink.addEventListener("click", loadStatistics);
+  addDashLink.addEventListener("click", loadAddDash);
 };
 
 const loadStatistics =  function () {
+  debugger;
   clearDashes();
   statisticsView.render(modelMock);
   loadTopEarnings();
@@ -184,6 +192,101 @@ const loadStatistics =  function () {
   loadTopBusyRestaurants();
   loadTopMileage(); 
 };
+
+const loadAddDash = function () {
+  debugger;
+  clearDashes();
+  addDashView.render(modelMock);
+  addDashView.addMoreHandler(controlAddDash);
+  addDashView.addHandlerUpload(controlUploadDash);
+}
+
+const controlUploadDash = function (data) {
+  console.log(data);
+}
+
+const controlAddDash = function () {
+    // Create a new row
+    var newRow = document.createElement('div');
+    newRow.className = 'row';
+
+    // Start Time
+    var startTimeCol = document.createElement('div');
+    startTimeCol.className = 'col-md-2';
+    var startTimeGroup = document.createElement('div');
+    startTimeGroup.className = 'form-group';
+    var startTimeLabel = document.createElement('label');
+    startTimeLabel.setAttribute('for', 'startTime');
+    startTimeLabel.innerText = 'Start Time';
+    var startTimeInput = document.createElement('input');
+    startTimeInput.type = 'text';
+    startTimeInput.className = 'form-control';
+    startTimeInput.id = 'startTime';
+    startTimeInput.name = 'startTime';
+    startTimeGroup.appendChild(startTimeLabel);
+    startTimeGroup.appendChild(startTimeInput);
+    startTimeCol.appendChild(startTimeGroup);
+
+    // End Time
+    var endTimeCol = document.createElement('div');
+    endTimeCol.className = 'col-md-2';
+    var endTimeGroup = document.createElement('div');
+    endTimeGroup.className = 'form-group';
+    var endTimeLabel = document.createElement('label');
+    endTimeLabel.setAttribute('for', 'endTime');
+    endTimeLabel.innerText = 'End Time';
+    var endTimeInput = document.createElement('input');
+    endTimeInput.type = 'text';
+    endTimeInput.className = 'form-control';
+    endTimeInput.id = 'endTime';
+    endTimeInput.name = 'endTime';
+    endTimeGroup.appendChild(endTimeLabel);
+    endTimeGroup.appendChild(endTimeInput);
+    endTimeCol.appendChild(endTimeGroup);
+
+    // Amount
+    var amountCol = document.createElement('div');
+    amountCol.className = 'col-md-2';
+    var amountGroup = document.createElement('div');
+    amountGroup.className = 'form-group';
+    var amountLabel = document.createElement('label');
+    amountLabel.setAttribute('for', 'amount');
+    amountLabel.innerText = 'Amount';
+    var amountInput = document.createElement('input');
+    amountInput.type = 'number';
+    amountInput.className = 'form-control';
+    amountInput.id = 'amount';
+    amountInput.name = 'amount';
+    amountGroup.appendChild(amountLabel);
+    amountGroup.appendChild(amountInput);
+    amountCol.appendChild(amountGroup);
+
+    // Mileage
+    var mileageCol = document.createElement('div');
+    mileageCol.className = 'col-md-2';
+    var mileageGroup = document.createElement('div');
+    mileageGroup.className = 'form-group';
+    var mileageLabel = document.createElement('label');
+    mileageLabel.setAttribute('for', 'mileage');
+    mileageLabel.innerText = 'Mileage';
+    var mileageInput = document.createElement('input');
+    mileageInput.type = 'number';
+    mileageInput.className = 'form-control';
+    mileageInput.id = 'mileage';
+    mileageInput.name = 'mileage';
+    mileageGroup.appendChild(mileageLabel);
+    mileageGroup.appendChild(mileageInput);
+    mileageCol.appendChild(mileageGroup);
+
+    // Append columns to the new row
+    newRow.appendChild(startTimeCol);
+    newRow.appendChild(endTimeCol);
+    newRow.appendChild(amountCol);
+    newRow.appendChild(mileageCol);
+
+    // Append the new row to the form
+    document.querySelector('.addDashDiv').appendChild(newRow);
+}
 
 const init = function () {
   loadDashes();
