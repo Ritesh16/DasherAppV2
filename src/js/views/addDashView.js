@@ -1,4 +1,6 @@
 import View from './view.js';
+import datepicker from "js-datepicker";
+import { formatDate } from "../utility";
 
 class AddDashView extends View {
     _parentElement = document.querySelector('.dashList');
@@ -11,36 +13,56 @@ class AddDashView extends View {
         const form = document.querySelector('.addDashForm');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+            debugger;
             var formData = new FormData(form);
 
            var data = {
                 dashDate: formData.get('dashDate'),
                 location: formData.get('location'),
-                startTime: [],
-                endTime: [],
-                amount: [],
-                mileage: []
+                details: []
             };
 
             // Collect data from dynamically added rows
             var rows = form.querySelectorAll('.row');
             rows.forEach(row => {
-                console.log(row);
-                if (row.querySelector('[name="startTime"]')) {
-                    console.log(row.querySelector('[name="startTime"]').value);
-                    data.startTime.push(row.querySelector('[name="startTime"]').value);
+
+                if(row.querySelector('[name="dashDate"]') || row.querySelector('[name="submitDash"]')) {
+                    return;
                 }
-                if (row.querySelector('[name="endTime"]')) {
-                    data.endTime.push(row.querySelector('[name="endTime"]').value);
+
+                debugger;
+
+                if(!row.querySelector('[name="startTime"]').value) {
+                    alert("Please select a start time");
+                    return;
                 }
-                if (row.querySelector('[name="amount"]')) {
-                    data.amount.push(row.querySelector('[name="amount"]').value);
-                }
-                if (row.querySelector('[name="mileage"]')) {
-                    data.mileage.push(row.querySelector('[name="mileage"]').value);
-                }
+
+
+                data.details.push({ 
+                        startTime: row.querySelector('[name="startTime"]').value, 
+                        endTime: row.querySelector('[name="startTime"]').value,
+                        amount: row.querySelector('[name="amount"]').value,
+                        mileage: row.querySelector('[name="mileage"]').value
+                });
             });
+
+            console.log(data);
+
           //handler(data);
+        });
+      }
+
+      showCalendar() {
+        this._addCalendar("#dashDate", new Date(2025, 3, 3));
+      }
+    
+      _addCalendar(selector, date) {
+        datepicker(selector, {
+          formatter: (input, date, instance) => {
+            const value = formatDate(date);
+            input.value = value; // => '1/1/2099'
+          },
+          startDate: date,
         });
       }
     
@@ -52,7 +74,7 @@ class AddDashView extends View {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input name="dashDate" type="date" class="form-control" id="dashDate">
+                        <input name="dashDate" type="text" class="form-control" id="dashDate" class="dashDate" >
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -73,13 +95,13 @@ class AddDashView extends View {
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="dashStartTime">Start Time</label>
-                        <input name="startTime" type="text" class="form-control" id="startTime">
+                        <input name="startTime" type="time" class="form-control" id="startTime">
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="dashEndTime">End Time</label>
-                        <input name="endTime" type="text" class="form-control" id="endTime">
+                        <input name="endTime" type="time" class="form-control" id="endTime">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -100,7 +122,7 @@ class AddDashView extends View {
              <div class="row">
             <div class="col-md-6">
                     <div class="form-group">
-                       <input type="submit" class="btn btn-primary" value="Submit">
+                       <input name="submitDash" type="submit" class="btn btn-primary" value="Submit">
                     </div>
                 </div>
             </div>

@@ -54,13 +54,17 @@ export const state = {
     highestMileage: {
       page: 1,
       data: []
-    },
-    
+    }
   },
   search: {
     fromDate: "10272022",
     toDate: "10092023",
     location: "all",
+  },
+  addDash: {
+    date: new Date(2024,3,3),
+    location: "Middletown",
+    details: []
   },
   headers: {},
 };

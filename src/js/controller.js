@@ -14,7 +14,6 @@ import paginationView2 from "./views/paginationView2.js";
 import dailyEarningsView from "./views/dailyEarningsView.js";
 import statisticsView from "./views/statisticsView.js";
 import topEarningDays from "./views/partialViews/topEarningDaysView.js";
-import AddDashView from "./views/addDashView.js";
 import addDashView from "./views/addDashView.js";
 
 // const controlTotalEarned = async function () {
@@ -183,7 +182,6 @@ const loadLinks = function () {
 };
 
 const loadStatistics =  function () {
-  debugger;
   clearDashes();
   statisticsView.render(modelMock);
   loadTopEarnings();
@@ -194,9 +192,9 @@ const loadStatistics =  function () {
 };
 
 const loadAddDash = function () {
-  debugger;
   clearDashes();
   addDashView.render(modelMock);
+  addDashView.showCalendar();
   addDashView.addMoreHandler(controlAddDash);
   addDashView.addHandlerUpload(controlUploadDash);
 }
