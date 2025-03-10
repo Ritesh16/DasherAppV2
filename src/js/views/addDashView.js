@@ -1,6 +1,7 @@
 import View from './view.js';
 import datepicker from "js-datepicker";
 import { formatDate } from "../utility";
+import toast from '../toastNotification.js';
 
 class AddDashView extends View {
     _parentElement = document.querySelector('.dashList');
@@ -9,11 +10,10 @@ class AddDashView extends View {
         document.querySelector(".addMoreBtn").addEventListener("click", handler);
     }
 
-    addHandlerUpload(handler) {
+    addDashDetails(handler) {
         const form = document.querySelector('.addDashForm');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            debugger;
             var formData = new FormData(form);
 
            var data = {
@@ -30,24 +30,36 @@ class AddDashView extends View {
                     return;
                 }
 
-                debugger;
-
                 if(!row.querySelector('[name="startTime"]').value) {
-                    alert("Please select a start time");
+                    toast.show('error', 'Please enter start time');
                     return;
                 }
 
+                if(!row.querySelector('[name="endTime"]').value) {
+                    toast.show('error', 'Please enter end time');
+                    return;
+                }
+
+                if(!row.querySelector('[name="amount"]').value) {
+                    toast.show('error', 'Please amount amount');
+                    return;
+                }
+
+                if(!row.querySelector('[name="mileage"]').value) {
+                    toast.show('error', 'Please amount mileage');
+                    return;
+                }
 
                 data.details.push({ 
                         startTime: row.querySelector('[name="startTime"]').value, 
-                        endTime: row.querySelector('[name="startTime"]').value,
+                        endTime: row.querySelector('[name="endTime"]').value,
                         amount: row.querySelector('[name="amount"]').value,
                         mileage: row.querySelector('[name="mileage"]').value
                 });
             });
 
+                  
             console.log(data);
-
           //handler(data);
         });
       }
@@ -119,7 +131,7 @@ class AddDashView extends View {
             </div>
            
             </div>
-             <div class="row">
+             <div class="row" style="margin-top: 1%;">
             <div class="col-md-6">
                     <div class="form-group">
                        <input name="submitDash" type="submit" class="btn btn-primary" value="Submit">

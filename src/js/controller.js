@@ -196,7 +196,7 @@ const loadAddDash = function () {
   addDashView.render(modelMock);
   addDashView.showCalendar();
   addDashView.addMoreHandler(controlAddDash);
-  addDashView.addHandlerUpload(controlUploadDash);
+  addDashView.addDashDetails(controlUploadDash);
 }
 
 const controlUploadDash = function (data) {
@@ -217,7 +217,7 @@ const controlAddDash = function () {
     startTimeLabel.setAttribute('for', 'startTime');
     startTimeLabel.innerText = 'Start Time';
     var startTimeInput = document.createElement('input');
-    startTimeInput.type = 'text';
+    startTimeInput.type = 'time';
     startTimeInput.className = 'form-control';
     startTimeInput.id = 'startTime';
     startTimeInput.name = 'startTime';
@@ -234,7 +234,7 @@ const controlAddDash = function () {
     endTimeLabel.setAttribute('for', 'endTime');
     endTimeLabel.innerText = 'End Time';
     var endTimeInput = document.createElement('input');
-    endTimeInput.type = 'text';
+    endTimeInput.type = 'time';
     endTimeInput.className = 'form-control';
     endTimeInput.id = 'endTime';
     endTimeInput.name = 'endTime';
