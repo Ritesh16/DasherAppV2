@@ -14,16 +14,16 @@ class AddDashView extends View {
         const form = document.querySelector('.addDashForm');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-            var formData = new FormData(form);
+            let formData = new FormData(form);
 
-           var data = {
+           let data = {
                 dashDate: formData.get('dashDate'),
                 location: formData.get('location'),
                 details: []
             };
 
             // Collect data from dynamically added rows
-            var rows = form.querySelectorAll('.row');
+            let rows = form.querySelectorAll('.row');
             rows.forEach(row => {
 
                 if(row.querySelector('[name="dashDate"]') || row.querySelector('[name="submitDash"]')) {
@@ -60,6 +60,8 @@ class AddDashView extends View {
 
                   
             console.log(data);
+            toast.show('info', 'Dash added successfully');
+            form.reset();
           //handler(data);
         });
       }
