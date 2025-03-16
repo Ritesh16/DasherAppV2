@@ -1,7 +1,6 @@
 import View from './view.js';
 import datepicker from "js-datepicker";
 import { formatDate } from "../utility";
-import toast from '../toastNotification.js';
 
 class AddDashView extends View {
     _parentElement = document.querySelector('.dashList');
@@ -11,63 +10,12 @@ class AddDashView extends View {
     }
 
     addDashDetails(handler) {
-        const form = document.querySelector('.addDashForm');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let formData = new FormData(form);
-
-           let data = {
-                dashDate: formData.get('dashDate'),
-                location: formData.get('location'),
-                details: []
-            };
-
-            // Collect data from dynamically added rows
-            let rows = form.querySelectorAll('.row');
-            rows.forEach(row => {
-
-                if(row.querySelector('[name="dashDate"]') || row.querySelector('[name="submitDash"]')) {
-                    return;
-                }
-
-                if(!row.querySelector('[name="startTime"]').value) {
-                    toast.show('error', 'Please enter start time');
-                    return;
-                }
-
-                if(!row.querySelector('[name="endTime"]').value) {
-                    toast.show('error', 'Please enter end time');
-                    return;
-                }
-
-                if(!row.querySelector('[name="amount"]').value) {
-                    toast.show('error', 'Please amount amount');
-                    return;
-                }
-
-                if(!row.querySelector('[name="mileage"]').value) {
-                    toast.show('error', 'Please amount mileage');
-                    return;
-                }
-
-                data.details.push({ 
-                        startTime: row.querySelector('[name="startTime"]').value, 
-                        endTime: row.querySelector('[name="endTime"]').value,
-                        amount: row.querySelector('[name="amount"]').value,
-                        mileage: row.querySelector('[name="mileage"]').value
-                });
-            });
-
-                  
-            console.log(data);
-            toast.show('info', 'Dash added successfully');
-            form.reset();
-          //handler(data);
-        });
+        handler();
       }
 
       showCalendar() {
         this._addCalendar("#dashDate", new Date(2025, 3, 3));
+        this.showDate();
       }
     
       _addCalendar(selector, date) {
@@ -79,6 +27,15 @@ class AddDashView extends View {
           startDate: date,
         });
       }
+
+      showDate() {
+        var todaydate = new Date();
+        var day = todaydate.getDate();
+        var month = todaydate.getMonth() + 1;
+        var year = todaydate.getFullYear();
+        var datestring = month + "-" + day +"-" + year;
+        document.getElementById("dashDate").value = datestring;
+    } 
     
     _generateMarkup() {
         return `
