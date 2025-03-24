@@ -15,6 +15,7 @@ import dailyEarningsView from "./views/dailyEarningsView.js";
 import statisticsView from "./views/statisticsView.js";
 import topEarningDays from "./views/partialViews/topEarningDaysView.js";
 import addDashView from "./views/addDashView.js";
+import reportsView from './views/reportsView.js';
 import toast from './toastNotification.js';
 
 // const controlTotalEarned = async function () {
@@ -173,12 +174,19 @@ const loadLinks = function () {
   const dashLink = document.querySelector("#dashapp-link");
   const statisticsLink = document.querySelector("#statistics-link");
   const addDashLink = document.querySelector("#addDash-link");
+  const reportsLink = document.querySelector("#reports-link");
 
   earningsLink.addEventListener("click", loadEarnings);
   dashLink.addEventListener("click", loadDashesDirectly);
   statisticsLink.addEventListener("click", loadStatistics);
   addDashLink.addEventListener("click", loadAddDash);
+  reportsLink.addEventListener("click", loadReports);
 };
+
+const loadReports = function () {
+  clearDashes();
+  reportsView.render(modelMock);
+}
 
 const loadStatistics = function () {
   clearDashes();
