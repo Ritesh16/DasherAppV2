@@ -186,6 +186,18 @@ const loadLinks = function () {
 const loadReports = function () {
   clearDashes();
   reportsView.render(modelMock);
+  reportsView.loadDates();
+  reportsView.generateReport(controlReports);
+}
+
+const controlReports = function () {
+  const form = document.querySelector(".generateReportForm");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let formData = new FormData(form);
+    console.log(formData.get("startDate"));
+    console.log(formData.get("endDate"));
+  });
 }
 
 const loadStatistics = function () {
