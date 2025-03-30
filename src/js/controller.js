@@ -16,6 +16,7 @@ import statisticsView from "./views/statisticsView.js";
 import topEarningDays from "./views/partialViews/topEarningDaysView.js";
 import addDashView from "./views/addDashView.js";
 import reportsView from './views/reportsView.js';
+import restaurantsView from './views/restaurantsView.js';
 import toast from './toastNotification.js';
 
 // const controlTotalEarned = async function () {
@@ -175,13 +176,27 @@ const loadLinks = function () {
   const statisticsLink = document.querySelector("#statistics-link");
   const addDashLink = document.querySelector("#addDash-link");
   const reportsLink = document.querySelector("#reports-link");
+  const restaurantsLink = document.querySelector("#restaurants-link");
 
   earningsLink.addEventListener("click", loadEarnings);
   dashLink.addEventListener("click", loadDashesDirectly);
   statisticsLink.addEventListener("click", loadStatistics);
   addDashLink.addEventListener("click", loadAddDash);
   reportsLink.addEventListener("click", loadReports);
+  restaurantsLink.addEventListener("click", loadRestaurants);
 };
+
+const loadRestaurants = function () {
+  clearDashes();
+  restaurantsView.render(modelMock);
+  restaurantsView.addHandlerLoadRestaurants(loadRestaurantStats);
+} 
+
+const loadRestaurantStats = function () {
+  const cityName = document.querySelector("#location").value;
+  modelMock.getRestaurantStats(cityName, 1);
+}
+
 
 const loadReports = function () {
   clearDashes();

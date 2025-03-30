@@ -66,6 +66,11 @@ export const state = {
     location: "Middletown",
     details: []
   },
+  restaurants: {
+    search: 'Middletown',
+    page: 1,
+    data: []
+  },
   headers: {},
 };
 
@@ -249,4 +254,30 @@ export const getHighestMileage = async function(pageNumber) {
 
   state.statistics.highestMileage.page = pageNumber;
   state.statistics.highestMileage.data = promiseArray;
+}
+
+export const getRestaurantStatsByCity = async function(cityName, pageNumber) {
+  const promiseArray = [];
+
+  for (let i = 0; i < 54; i++) {
+    promiseArray.push({
+      name: 'Restaurant-' + i,
+      totalEarned: 10 + i,
+      totalDeliveries: 10 + i,
+    });
+  }
+
+  state.headers = {
+    currentPage: 1,
+    itemsPerPage: 10,
+    totalItems: 72,
+    totalPages: 8,
+  };
+  const resolvedPromises = await Promise.all(
+    promiseArray.slice((pageNumber - 1) * 10, pageNumber * 10)
+  );
+
+  state.restaurants.page = pageNumber;
+  state.restaurants.search = cityName;
+  state.restaurants.data = resolvedPromises;
 }
