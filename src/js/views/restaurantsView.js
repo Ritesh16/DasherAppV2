@@ -38,6 +38,12 @@ class RestaurantsView extends View {
             </div>
         </div>
         </form>
+
+        <div class="row" id="restaurantStatsList">
+            
+        </div>
+
+
         `;
     }
 }

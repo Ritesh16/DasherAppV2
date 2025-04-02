@@ -18,6 +18,7 @@ import addDashView from "./views/addDashView.js";
 import reportsView from './views/reportsView.js';
 import restaurantsView from './views/restaurantsView.js';
 import toast from './toastNotification.js';
+import restaurantStatsListView from './views/partialViews/restaurantStatsListView.js';
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -189,14 +190,21 @@ const loadLinks = function () {
 const loadRestaurants = function () {
   clearDashes();
   restaurantsView.render(modelMock);
-  restaurantsView.addHandlerLoadRestaurants(loadRestaurantStats);
-} 
-
-const loadRestaurantStats = function () {
+  debugger;
   const cityName = document.querySelector("#location").value;
-  modelMock.getRestaurantStats(cityName, 1);
+  modelMock.getRestaurantStatsByCity(cityName, 1);
+if(restaurantStatsListView) {
+  console.log(restaurantStatsListView);
+  console.log("restaurantStatsListView is not null");
+}
+else{
+  console.log("restaurantStatsListView is null");
 }
 
+  restaurantStatsListView.render(modelMock);
+  console.log(modelMock.state.restaurants);
+  
+} 
 
 const loadReports = function () {
   clearDashes();
