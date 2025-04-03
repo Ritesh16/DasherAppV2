@@ -13,6 +13,14 @@ class AddDashView extends View {
         handler();
       }
 
+    renderSpinner = function () {
+        this._clear();
+        const markup = `
+        <img src="loading.gif" style="height: 50px;" />
+        `;
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    };
+
       showCalendar() {
         this._addCalendar("#dashDate", new Date(2025, 3, 3));
         this.showDate();

@@ -7,14 +7,13 @@ export default class RestaurantStatsListView {
     <!--!-->
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Restaurant</th>
         <th scope="col">Amount</th>
         <th scope="col">Total Deliveries</th>
       </tr>
     </thead>
     <tbody>
-    ${this._data.state.restaurants
+    ${this._data.state.restaurants.data
       .map(function (restaurant) {
         return `<tr class=table-primary> 
           <td>${restaurant.name}</td>
@@ -23,7 +22,6 @@ export default class RestaurantStatsListView {
             currency: "USD",
           })}</td>
           <td>${restaurant.totalDeliveries}</td>
-          <td>Edit</td>
           </tr>`;
       })
       .join("")}

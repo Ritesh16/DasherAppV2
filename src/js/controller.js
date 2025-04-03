@@ -18,7 +18,6 @@ import addDashView from "./views/addDashView.js";
 import reportsView from './views/reportsView.js';
 import restaurantsView from './views/restaurantsView.js';
 import toast from './toastNotification.js';
-import restaurantStatsListView from './views/partialViews/restaurantStatsListView.js';
 
 // const controlTotalEarned = async function () {
 //   await model.getTotalEarned();
@@ -187,19 +186,12 @@ const loadLinks = function () {
   restaurantsLink.addEventListener("click", loadRestaurants);
 };
 
-const loadRestaurants = function () {
+const loadRestaurants = async function () {
   clearDashes();
   restaurantsView.render(modelMock);
-  debugger;
   const cityName = document.querySelector("#location").value;
   modelMock.getRestaurantStatsByCity(cityName, 1);
-if(restaurantStatsListView) {
-  console.log(restaurantStatsListView);
-  console.log("restaurantStatsListView is not null");
-}
-else{
-  console.log("restaurantStatsListView is null");
-}
+  const restaurantStatsListView = await loadRestaurantStatsListView();
 
   restaurantStatsListView.render(modelMock);
   console.log(modelMock.state.restaurants);
@@ -245,6 +237,7 @@ const controlUploadDash = function () {
   const form = document.querySelector(".addDashForm");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+ 
     let formData = new FormData(form);
 
     let data = {
@@ -529,6 +522,13 @@ const loadTopMileageView = async function () {
   const TopMileageView = module.default; // Access default export
   const topMileageView = new TopMileageView(); // Create instance
   return topMileageView;
+};
+
+const loadRestaurantStatsListView =  async function () {
+  const module = await import("./views/partialViews/restaurantStatsListView.js"); // Dynamic import
+  const RestaurantStatsListView = module.default; // Access default export
+  const restaurantStatsListView = new RestaurantStatsListView(); // Create instance
+  return restaurantStatsListView;
 };
 
 init();
