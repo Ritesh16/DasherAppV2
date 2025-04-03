@@ -281,12 +281,22 @@ const controlUploadDash = function () {
         return;
       }
 
+      addDashView.renderSpinner();
+
+     
+      
+
       data.details.push({
         startTime: row.querySelector('[name="startTime"]').value,
         endTime: row.querySelector('[name="endTime"]').value,
         amount: row.querySelector('[name="amount"]').value,
         mileage: row.querySelector('[name="mileage"]').value,
       });
+
+      setTimeout(() => {
+        console.log('This message appears after a 2-second delay.');
+        loadAddDash();
+      }, 2000);
     });
 
     if (!hasError) {
