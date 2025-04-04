@@ -38,8 +38,11 @@ const controlFilter = async function () {
 
 const loadEarnings = async function () {
   document.getElementById("pageList").innerHTML = "";
+  weeklyEarningsView.renderSpinner();
+
   await modelMock.getWeeklyEarnings();
   weeklyEarningsView.render(modelMock);
+
   clearDashes();
   earningsFilterView.render();
   earningsFilterView.addHandleRender(earningsRadioButtonsClick);
@@ -76,10 +79,12 @@ const earningsRadioButtonsClick = async function (e) {
   modelMock.resetHeaders();
 
   if (e.target.value == "Weekly") {
+    weeklyEarningsView.renderSpinner();
     await modelMock.getWeeklyEarnings();
     weeklyEarningsView.render(modelMock);
     paginationView2.addHandlerClick(handleWeeklyEarningsPagination);
   } else if (e.target.value == "Monthly") {
+    monthlyEarningsView.renderSpinner();
     await modelMock.getMonthlyEarnings();
     document.querySelector(".dashList").innerHTML = "";
     monthlyEarningsView.render(modelMock);
@@ -90,6 +95,7 @@ const earningsRadioButtonsClick = async function (e) {
       modelMock.state.earnings.monthlyEarnings.filter.year
     );
   } else {
+    dailyEarningsView.renderSpinner();
     await modelMock.getDailyEarnings(
       1,
       modelMock.state.earnings.dailyEarnings.filter.fromDate,
@@ -422,10 +428,13 @@ const loadMoreTopEarnings = async function () {
 };
 
 const loadTopEarningsByPageNumber = async function (pageNumber) {
-  modelMock.getTopEarnings(pageNumber);
   const topEarningDaysView = await loadTopEarningDaysView();
+  topEarningDaysView.renderSpinner();
+  modelMock.getTopEarnings(pageNumber);
+
   topEarningDaysView.render(modelMock);
   topEarningDaysView.addLoadMoreHandler(loadMoreTopEarnings);
+  
   if (pageNumber > 1) topEarningDaysView.addShowLessHandler(loadTopEarnings);
 };
 
@@ -439,8 +448,9 @@ const loadMoreTopDashes = async function () {
 };
 
 const loadTopDashesByPageNumber = async function (pageNumber) {
-  modelMock.getTopDashes(pageNumber);
   const topDashesView = await loadTopDashesView();
+  topDashesView.renderSpinner();
+  modelMock.getTopDashes(pageNumber);
   topDashesView.render(modelMock);
   topDashesView.addLoadMoreHandler(loadMoreTopDashes);
   if (pageNumber > 1) topDashesView.addShowLessHandler(loadTopDashes);
@@ -456,8 +466,9 @@ const loadMoreTopHourlyRates = async function () {
 };
 
 const loadTopHourlyRatesByPageNumber = async function (pageNumber) {
-  modelMock.getTopHourlyRates(pageNumber);
   const topHourlyRatesView = await loadTopHourlyRatesView();
+  topHourlyRatesView.renderSpinner();
+  modelMock.getTopHourlyRates(pageNumber);
   topHourlyRatesView.render(modelMock);
   topHourlyRatesView.addLoadMoreHandler(loadMoreTopHourlyRates);
   if (pageNumber > 1) topHourlyRatesView.addShowLessHandler(loadTopHourlyRates);
@@ -473,8 +484,9 @@ const loadMoreTopBusyRestaurants = async function () {
 };
 
 const loadTopBusyRestaurantsByPageNumber = async function (pageNumber) {
-  modelMock.getTopBusyRestaurants(pageNumber);
   const topBusyRestaurantsView = await loadTopBusyRestaurantsView();
+  topBusyRestaurantsView.renderSpinner();
+  modelMock.getTopBusyRestaurants(pageNumber);
   topBusyRestaurantsView.render(modelMock);
   topBusyRestaurantsView.addLoadMoreHandler(loadMoreTopBusyRestaurants);
   if (pageNumber > 1)
@@ -491,8 +503,9 @@ const loadMoreTopMileage = async function () {
 };
 
 const loadTopMileageByPageNumber = async function (pageNumber) {
-  modelMock.getHighestMileage(pageNumber);
   const topMileageView = await loadTopMileageView();
+  topMileageView.renderSpinner();
+  modelMock.getHighestMileage(pageNumber);
   topMileageView.render(modelMock);
   topMileageView.addLoadMoreHandler(loadMoreTopMileage);
   if (pageNumber > 1) topMileageView.addShowLessHandler(loadTopMileage);

@@ -59,6 +59,14 @@ export default class TopBusyRestaurantsView {
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
       }
+    
+    renderSpinner = function () {
+        this._clear();
+        const markup = `
+        <img src="loading.gif" style="height: 50px;" />
+        `;
+        this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    };
   
       _clear() {
         this._parentElement.innerHTML = "";
