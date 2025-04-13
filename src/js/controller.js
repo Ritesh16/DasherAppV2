@@ -19,10 +19,10 @@ import reportsView from './views/reportsView.js';
 import restaurantsView from './views/restaurantsView.js';
 import toast from './toastNotification.js';
 
-// const controlTotalEarned = async function () {
-//   await model.getTotalEarned();
-//   totalEarnedView.render(model.state.totalEarned);
-// };
+const controlTotalEarned = async function () {
+  await model.getTotalEarned();
+  totalEarnedView.render(model.state.totalEarned);
+};
 
 // const controlTotalMileage = async function () {
 //   await model.getTotalMileage();
@@ -34,6 +34,8 @@ const controlFilter = async function () {
   dateFilterView.render(model);
   dateFilterView.showCalendar();
   dateFilterView.addHandlerOnSearch(searchFilter);
+  debugger;
+  await controlTotalEarned();
 };
 
 const loadEarnings = async function () {
@@ -400,6 +402,7 @@ const controlAddDash = function () {
 
 const init = function () {
   loadDashes();
+  controlTotalEarned();
 };
 
 const loadDashesDirectly = function () {

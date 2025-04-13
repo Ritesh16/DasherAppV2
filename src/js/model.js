@@ -4,6 +4,10 @@ import { API_URL, PAGE_SIZE } from "./config";
 export const state = {
   totalEarned: 0,
   totalMileage: 0,
+  highestEarningDay: {
+    date: "",
+    value: 0
+  },
   locations: [],
   dashList: [],
   weeklyEarnings: [],
@@ -19,11 +23,12 @@ export const state = {
 export const getWeeklyEarnings = async function () {};
 
 export const getTotalEarned = async function () {
-  const data = await callAPI(
-    `${API_URL}statistics/GetTotalEarned?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
+  const response = await callAPI(
+    `${API_URL}TotalEarnings?fromDate=${state.search.fromDate}&toDate=${state.search.toDate}&location=${state.search.location}`
   );
 
-  state.totalEarned = data.toFixed(2);
+  var output = await response.json();
+  state.totalEarned = output.toFixed(2);
 };
 
 export const getTotalMileage = async function () {
@@ -82,3 +87,12 @@ export const setDates = function () {
 
   state.search.toDate = formattedDate;
 };
+
+export const getHighestEarningDay = async function() {
+  const data = await callAPI(
+    `${API_URL}statistics/GetHighestEarningDays?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
+  );
+  
+  state.highestEarningDay = data;
+  state.highestEarningDayDate = data.date;
+}
