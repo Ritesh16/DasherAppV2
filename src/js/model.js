@@ -28,7 +28,14 @@ export const getTotalEarned = async function () {
   );
 
   var output = await response.json();
-  state.totalEarned = output.toFixed(2);
+  if(output.success) {
+    state.totalEarned = output.data.toFixed(2);
+  }
+  else{
+    state.totalEarned = '0';
+    console.log("Error fetching total earnings:", output.message);
+  }
+  
 };
 
 export const getTotalMileage = async function () {
@@ -89,10 +96,11 @@ export const setDates = function () {
 };
 
 export const getHighestEarningDay = async function() {
-  const data = await callAPI(
+  const output = await callAPI(
     `${API_URL}statistics/GetHighestEarningDays?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
   );
   
-  state.highestEarningDay = data;
+console.log(output);
+  state.highestEarningDay = output;
   state.highestEarningDayDate = data.date;
 }

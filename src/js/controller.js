@@ -34,7 +34,6 @@ const controlFilter = async function () {
   dateFilterView.render(model);
   dateFilterView.showCalendar();
   dateFilterView.addHandlerOnSearch(searchFilter);
-  debugger;
   await controlTotalEarned();
 };
 
