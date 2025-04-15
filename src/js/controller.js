@@ -24,10 +24,10 @@ const controlTotalEarned = async function () {
   totalEarnedView.render(model.state.totalEarned);
 };
 
-// const controlTotalMileage = async function () {
-//   await model.getTotalMileage();
-//   totalMileageView.render(model.state.totalMileage);
-// };
+const controlTotalMileage = async function () {
+  await model.getTotalMileage();
+  totalMileageView.render(model.state.totalMileage);
+};
 
 const controlFilter = async function () {
   await model.getLocations();
@@ -35,6 +35,7 @@ const controlFilter = async function () {
   dateFilterView.showCalendar();
   dateFilterView.addHandlerOnSearch(searchFilter);
   await controlTotalEarned();
+  await controlTotalMileage();
 };
 
 const loadEarnings = async function () {

@@ -39,11 +39,18 @@ export const getTotalEarned = async function () {
 };
 
 export const getTotalMileage = async function () {
-  const data = await callAPI(
-    `${API_URL}statistics/GetTotalMileage?fromDate=${state.search.fromDateString}&toDate=${state.search.toDateString}&location=${state.search.location}`
+  const response = await callAPI(
+    `${API_URL}TotalMileage?fromDate=${state.search.fromDate}&toDate=${state.search.toDate}&location=${state.search.location}`
   );
 
-  state.totalMileage = data;
+  var output = await response.json();
+  if(output.success) {
+    state.totalMileage = output.data;
+  }
+  else{
+    state.totalMileage = '0';
+    console.log("Error fetching total earnings:", output.message);
+  }
 };
 
 export const getLocations = async function () {
